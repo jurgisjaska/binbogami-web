@@ -5,9 +5,9 @@ import { RouterLink, RouterView } from 'vue-router'
 <template>
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
-      <a class="navbar-item" href="/">
-        <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28">
-      </a>
+      <RouterLink class="navbar-item" to="/">
+        <img src="https://picsum.photos/112/23" width="112" height="28">
+      </RouterLink>
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
         <span aria-hidden="true"></span>
@@ -47,12 +47,10 @@ import { RouterLink, RouterView } from 'vue-router'
       <div class="navbar-end">
         <div class="navbar-item">
           <div class="buttons">
-            <a class="button is-primary">
+            <RouterLink class="button is-primary" to="signup">
               <strong>Sign up</strong>
-            </a>
-            <a class="button is-light">
-              Log in
-            </a>
+            </RouterLink>
+            <RouterLink class="button is-light" to="signin">Sign in</RouterLink>
           </div>
         </div>
       </div>
