@@ -1,11 +1,23 @@
 <script setup>
 import { ref } from "vue"
+import axios from "axios"
 
 const email = ref("")
 const password = ref("")
 
 const signin = () => {
-  console.log(email.value)
+  const data = {
+    "email": email.value,
+    "password": password.value
+  }
+
+  axios.put("auth", data)
+    .then((response) => {
+      console.log(response)
+    })
+    .catch((error) => {
+      console.log(error)
+    })
 }
 </script>
 
