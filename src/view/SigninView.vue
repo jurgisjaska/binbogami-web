@@ -4,7 +4,7 @@ import SigninForm from "@/component/form/SigninForm.vue"
 
 <template>
   <div class="signin-view">
-    <SigninForm></SigninForm>
+    <SigninForm/>
   </div>
 </template>
 

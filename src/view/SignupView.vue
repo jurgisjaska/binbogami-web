@@ -1,10 +1,11 @@
 <script setup>
 
+import SignupForm from "@/component/form/SignupForm.vue"
 </script>
 
 <template>
 <div class="signup-view">
-  Sign Up
+  <SignupForm/>
 </div>
 </template>
 
