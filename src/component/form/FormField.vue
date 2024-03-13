@@ -3,19 +3,21 @@ defineProps({
   label: String,
   type: String,
   placeholder: String,
-  model: Object,
-  icon: String
+  modelValue: String,
 })
 </script>
 
 <template>
   <div class="field">
     <div class="label">{{ label }}</div>
-    <div class="control has-icons-left">
-      <input type="{{ type }}" class="input" :placeholder="placeholder || label" :value="model">
-      <span class="icon is-small is-left">
-          <i class="fas {{ icon }}"></i>
-        </span>
+    <div class="control">
+      <input
+        type="{{ type }}"
+        class="input"
+        :placeholder="placeholder || label"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
+      />
     </div>
   </div>
 </template>
