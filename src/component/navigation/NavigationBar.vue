@@ -1,5 +1,11 @@
 <script setup>
-import { RouterLink } from 'vue-router'
+import { RouterLink } from "vue-router"
+import { token } from "@/token.js"
+import { ref, watch } from "vue"
+
+const t = token()
+const email = ref(t ? t.email : "");
+
 </script>
 
 <template>
@@ -46,11 +52,14 @@ import { RouterLink } from 'vue-router'
 
       <div class="navbar-end">
         <div class="navbar-item">
+          {{ email }}
+        </div>
+        <div class="navbar-item">
           <div class="buttons">
-            <RouterLink class="button is-primary" to="signup">
+            <RouterLink class="button is-primary" :to="{name: 'signup', params: {invitation: ''}}">
               <strong>Sign up</strong>
             </RouterLink>
-            <RouterLink class="button is-light" to="signin">Sign in</RouterLink>
+            <RouterLink class="button is-light" :to="{name: 'signin'}">Sign in</RouterLink>
           </div>
         </div>
       </div>

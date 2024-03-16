@@ -1,6 +1,7 @@
 <script setup>
 import { ref } from "vue"
-import api from "../../api.js"
+import api from "@/api.js"
+import { persist } from "@/token.js"
 
 const email = ref("")
 const password = ref("")
@@ -15,7 +16,7 @@ const signin = () => {
 
   api.put("auth", data)
     .then((r) => {
-      localStorage.setItem("binbogami_token", r.data.data.token)
+      persist(r.data.data.token)
     })
     .catch((e) => {
       error.value = e.response.data.message;

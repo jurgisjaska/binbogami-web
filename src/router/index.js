@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory } from "vue-router"
 import HomeView from "@/view/HomeView.vue"
 
+// @todo add before checks for the token
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -23,7 +25,7 @@ const router = createRouter({
       component: () => import("@/view/SigninView.vue")
     },
     {
-      path: "/signup",
+      path: "/signup/:invitation?",
       name: "signup",
       component: () => import("@/view/SignupView.vue")
     },

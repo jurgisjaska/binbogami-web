@@ -1,46 +1,85 @@
 <script setup>
 import { ref } from "vue"
-import axios from "axios"
 import FormField from "@/component/form/FormField.vue"
+import { persist } from "@/token.js"
+import { useRoute, useRouter } from "vue-router"
+import api from "@/api.js"
 
-const email = ref("")
-const password = ref("")
-const repeatedPassword = ref("")
-const name = ref("")
-const surname = ref("")
+const router = useRouter();
+const route = useRoute();
 
-const formError = ref("")
+const email = ref("");
+const password = ref("");
+const repeatedPassword = ref("");
+const name = ref("");
+const surname = ref("");
 
-const signin = () => {
+const error = ref("");
+const invitation = ref("");
+(() => {
+  const invitationId = route.params.invitation ?? null
+  if (invitationId) {
+    api.get("/p/invitation/" + invitationId)
+      .then((r) => {
+        console.log(r.data)
+        invitation.value = r.data.data
+      })
+      .catch((e) => {
+        error.value = e.response.data.message
+      })
+  }
+})();
+
+const signup = () => {
   const data = {
     "email": email.value,
     "password": password.value,
-    "repeated_password": repeatedPassword.value,
+    "repeatedPassword": repeatedPassword.value,
     "name": name.value,
     "surname": surname.value
   }
 
-  axios.post("auth", data)
-    .then((response) => {
-      console.log(response)
+  if (invitation) {
+    data.invitationId = invitation.invitation.id
+  }
+
+  api.post("auth", data)
+    .then((r) => {
+      persist(r.data.data.token)
+      router.push("")
     })
-    .catch((error) => {
-      formError.value = error.response.data.message
+    .catch((e) => {
+      error.value = e.response.data.message
     })
 }
 </script>
 
 <template>
-  <div class="notification is-danger" v-if="formError">
-    <p>{{ formError }}</p>
+  <div class="card" v-if="invitation">
+    <div class="card-header">
+      <div class="card-header-title">
+        {{ invitation.organization.name }}
+      </div>
+    </div>
+    <div class="card-content">
+      <div class="content">
+        {{ invitation.organization.description }}
+        <br>
+        Expire on {{ invitation.invitation.expiredAt }} <time :datetime="invitation.invitation.expiredAt">{{ invitation.invitation.expiredAt }}</time>
+      </div>
+    </div>
   </div>
 
-  <form class="signin-form" @submit.prevent="signin">
-    <FormField label="Email" type="email" v-model="email" :errors="errors" />
-    <FormField label="Password" type="password" v-model="password" :errors="errors" />
-    <FormField label="Repeated Password" type="password" v-model="repeatedPassword" :errors="errors" />
-    <FormField label="Name" type="text" v-model="name" :errors="errors" />
-    <FormField label="Surname" type="text" v-model="surname" :errors="errors" />
+  <div class="notification is-danger" v-if="error">
+    <p>{{ error }}</p>
+  </div>
+
+  <form class="signin-form" @submit.prevent="signup">
+    <FormField label="Email" type="email" v-model="email" />
+    <FormField label="Password" type="password" v-model="password" />
+    <FormField label="Repeated Password" type="password" v-model="repeatedPassword" />
+    <FormField label="Name" type="text" v-model="name" />
+    <FormField label="Surname" type="text" v-model="surname" />
 
     <button type="submit" class="button is-primary">Sign Up</button>
   </form>
