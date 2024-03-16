@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import FormField from "@/component/form/FormField.vue";
-import { persist } from "@/token.js";
 import { useRoute, useRouter } from "vue-router";
 import api from "@/api.js";
 

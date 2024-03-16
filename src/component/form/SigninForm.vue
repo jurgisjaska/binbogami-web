@@ -1,7 +1,10 @@
 <script setup>
 import { ref } from "vue"
 import api from "@/api.js"
-import { persist } from "@/token.js"
+import { useTokenStore } from "@/store/token.js";
+import { jwtDecode } from "jwt-decode";
+
+const tokenStore = useTokenStore()
 
 const email = ref("")
 const password = ref("")
@@ -16,7 +19,7 @@ const signin = () => {
 
   api.put("auth", data)
     .then((r) => {
-      persist(r.data.data.token)
+      tokenStore.set(jwtDecode(r.data.data.token))
     })
     .catch((e) => {
       error.value = e.response.data.message;

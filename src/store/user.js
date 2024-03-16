@@ -1,8 +1,9 @@
 import { defineStore } from "pinia";
 
+const storageName = "binbogami_user"
 export const useUserStore = defineStore('user', {
   state: () => ({
-    user: null,
+    user: JSON.parse(localStorage.getItem(storageName)) || null,
   }),
   getters: {
     organization: (state) => state.user,
@@ -10,9 +11,11 @@ export const useUserStore = defineStore('user', {
   actions: {
     set(user) {
       this.user = user;
+      localStorage.setItem(storageName, JSON.stringify(user));
     },
     clear() {
       this.user = null;
+      localStorage.removeItem(storageName);
     },
   },
 });

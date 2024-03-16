@@ -3,8 +3,10 @@ import FormField from "@/component/form/FormField.vue";
 import { ref } from "vue";
 import api from "@/api.js";
 import { useRouter } from "vue-router";
+import { useOrganizationStore } from "@/store/organization.js";
 
 const router = useRouter();
+const organizationStore = useOrganizationStore()
 
 const name = ref("");
 const description = ref("");
@@ -20,10 +22,7 @@ const createOrganization = () => {
   api.post("v1/organizations", data)
     .then((r) => {
       const data = r.data.data;
-      console.log(data);
-
-      // @todo set organization as active
-
+      organizationStore.set(data)
       router.push({ name: "dashboard" });
     })
     .catch((e) => {

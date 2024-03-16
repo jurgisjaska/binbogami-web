@@ -1,13 +1,11 @@
 <script setup>
 import { RouterLink } from "vue-router"
-import { token } from "@/token.js"
-import { ref, watch } from "vue"
+import { ref } from "vue"
 import { useUserStore } from "@/store/user.js";
 
 const userStore = useUserStore()
 
-const t = token()
-const email = ref(t ? t.email : "");
+const email = ref(userStore ? userStore.email : "");
 
 </script>
 
