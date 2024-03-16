@@ -7,7 +7,3 @@ import SignupForm from "@/component/form/SignupForm.vue"
   <SignupForm/>
 </div>
 </template>
-
-<style scoped>
-
-</style>

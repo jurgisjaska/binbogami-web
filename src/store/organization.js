@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 
-export const organizationStore = defineStore("organization", {
+export const useOrganizationStore = defineStore("organization", {
   state: () => ({
     organization: null,
   }),

@@ -2,6 +2,9 @@
 import { RouterLink } from "vue-router"
 import { token } from "@/token.js"
 import { ref, watch } from "vue"
+import { useUserStore } from "@/store/user.js";
+
+const userStore = useUserStore()
 
 const t = token()
 const email = ref(t ? t.email : "");

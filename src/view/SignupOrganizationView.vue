@@ -7,7 +7,3 @@ import SignupCreateOrganizationForm from "@/component/form/SignupCreateOrganizat
     <SignupCreateOrganizationForm />
   </div>
 </template>
-
-<style scoped>
-
-</style>
