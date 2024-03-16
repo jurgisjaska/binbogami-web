@@ -12,8 +12,8 @@ defineProps({
     <div class="label">{{ label }}</div>
     <div class="control">
       <input
-        type="{{ type }}"
         class="input"
+        :type="type"
         :placeholder="placeholder || label"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"

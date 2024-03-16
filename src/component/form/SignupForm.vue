@@ -1,9 +1,9 @@
 <script setup>
-import { ref } from "vue"
-import FormField from "@/component/form/FormField.vue"
-import { persist } from "@/token.js"
-import { useRoute, useRouter } from "vue-router"
-import api from "@/api.js"
+import { ref } from "vue";
+import FormField from "@/component/form/FormField.vue";
+import { persist } from "@/token.js";
+import { useRoute, useRouter } from "vue-router";
+import api from "@/api.js";
 
 const router = useRouter();
 const route = useRoute();
@@ -17,16 +17,16 @@ const surname = ref("");
 const error = ref("");
 const invitation = ref("");
 (() => {
-  const invitationId = route.params.invitation ?? null
+  const invitationId = route.params.invitation ?? null;
   if (invitationId) {
     api.get("/p/invitation/" + invitationId)
       .then((r) => {
-        console.log(r.data)
-        invitation.value = r.data.data
+        console.log(r.data);
+        invitation.value = r.data.data;
       })
       .catch((e) => {
-        error.value = e.response.data.message
-      })
+        error.value = e.response.data.message;
+      });
   }
 })();
 
@@ -36,22 +36,23 @@ const signup = () => {
     "password": password.value,
     "repeatedPassword": repeatedPassword.value,
     "name": name.value,
-    "surname": surname.value
-  }
+    "surname": surname.value,
+  };
 
-  if (invitation) {
-    data.invitationId = invitation.invitation.id
+  if (invitation.value) {
+    data.invitationId = invitation.value.invitation.id;
   }
 
   api.post("auth", data)
     .then((r) => {
-      persist(r.data.data.token)
-      router.push("")
+      const data = r.data.data;
+      persist(data.token);
+      router.push({ name: data.isMember ? "dashboard" : "signup_organization" });
     })
     .catch((e) => {
-      error.value = e.response.data.message
-    })
-}
+      error.value = e.response.data.message;
+    });
+};
 </script>
 
 <template>
@@ -65,7 +66,8 @@ const signup = () => {
       <div class="content">
         {{ invitation.organization.description }}
         <br>
-        Expire on {{ invitation.invitation.expiredAt }} <time :datetime="invitation.invitation.expiredAt">{{ invitation.invitation.expiredAt }}</time>
+        Expire on {{ invitation.invitation.expiredAt }}
+        <time :datetime="invitation.invitation.expiredAt">{{ invitation.invitation.expiredAt }}</time>
       </div>
     </div>
   </div>
@@ -74,7 +76,7 @@ const signup = () => {
     <p>{{ error }}</p>
   </div>
 
-  <form class="signin-form" @submit.prevent="signup">
+  <form class="signup-form" @submit.prevent="signup">
     <FormField label="Email" type="email" v-model="email" />
     <FormField label="Password" type="password" v-model="password" />
     <FormField label="Repeated Password" type="password" v-model="repeatedPassword" />

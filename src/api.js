@@ -10,7 +10,7 @@ api.interceptors.request.use(
     const token = localStorage.getItem("binbogami_token")
 
     // @todo this should be changed later
-    if (token && config.url.includes("/v1/")) {
+    if (token && config.url.includes("v1/")) {
       config.headers.Authorization = `Bearer ${token}`
     }
 
