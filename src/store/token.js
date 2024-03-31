@@ -1,17 +1,18 @@
 import { defineStore } from "pinia";
+import { jwtDecode } from "jwt-decode";
 
-const storageName = "binbogami_token"
+const storageName = "binbogami_token";
 export const useTokenStore = defineStore("token", {
   state: () => ({
-    token: JSON.parse(localStorage.getItem(storageName)) || null,
+    token: localStorage.getItem(storageName) ? jwtDecode(localStorage.getItem(storageName)) : null,
   }),
   getters: {
-    token: (state) => state.token,
+    get: (state) => state.token,
   },
   actions: {
     set(token) {
       this.token = token;
-      localStorage.setItem(storageName, JSON.stringify(token));
+      localStorage.setItem(storageName, token);
     },
     clear() {
       this.token = null;

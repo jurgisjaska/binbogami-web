@@ -1,11 +1,10 @@
 <script setup>
 import { RouterLink } from "vue-router"
-import { ref } from "vue"
-import { useUserStore } from "@/store/user.js";
+import { useTokenStore } from "@/store/token.js";
+import { computed } from "vue";
 
-const userStore = useUserStore()
-
-const email = ref(userStore ? userStore.email : "");
+const tokenStore = useTokenStore()
+const id = computed(() => tokenStore.get?.id)
 
 </script>
 
@@ -53,7 +52,7 @@ const email = ref(userStore ? userStore.email : "");
 
       <div class="navbar-end">
         <div class="navbar-item">
-          {{ email }}
+          {{ id }}
         </div>
         <div class="navbar-item">
           <div class="buttons">

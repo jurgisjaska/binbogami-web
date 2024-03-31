@@ -6,7 +6,7 @@ import { useRouter } from "vue-router";
 import { useOrganizationStore } from "@/store/organization.js";
 
 const router = useRouter();
-const organizationStore = useOrganizationStore()
+const organizationStore = useOrganizationStore();
 
 const name = ref("");
 const description = ref("");
@@ -14,6 +14,7 @@ const description = ref("");
 const error = ref("");
 
 const createOrganization = () => {
+  error.value = null;
   const data = {
     name: name.value,
     description: description.value,
@@ -22,11 +23,11 @@ const createOrganization = () => {
   api.post("v1/organizations", data)
     .then((r) => {
       const data = r.data.data;
-      organizationStore.set(data)
+      organizationStore.set(data);
       router.push({ name: "dashboard" });
     })
     .catch((e) => {
-      error.value = e.response.data.message;
+      error.value = e.response?.data?.message || "Unexpected error";
     });
 };
 </script>

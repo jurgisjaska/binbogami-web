@@ -6,7 +6,7 @@ export const useUserStore = defineStore('user', {
     user: JSON.parse(localStorage.getItem(storageName)) || null,
   }),
   getters: {
-    organization: (state) => state.user,
+    get: (state) => state.user,
   },
   actions: {
     set(user) {

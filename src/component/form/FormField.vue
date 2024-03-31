@@ -4,7 +4,7 @@ defineProps({
   type: String,
   placeholder: String,
   modelValue: String,
-})
+});
 </script>
 
 <template>

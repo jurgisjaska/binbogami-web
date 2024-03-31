@@ -6,7 +6,7 @@ export const useOrganizationStore = defineStore("organization", {
     organization: JSON.parse(localStorage.getItem(storageName)) || null,
   }),
   getters: {
-    organization: (state) => state.organization,
+    get: (state) => state.organization,
   },
   actions: {
     set(organization) {

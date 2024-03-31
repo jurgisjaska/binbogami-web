@@ -18,18 +18,19 @@ const invitation = ref("");
 (() => {
   const invitationId = route.params.invitation ?? null;
   if (invitationId) {
+    error.value = null;
     api.get("/p/invitation/" + invitationId)
       .then((r) => {
-        console.log(r.data);
         invitation.value = r.data.data;
       })
       .catch((e) => {
-        error.value = e.response.data.message;
+        error.value = e.response?.data?.message || "Unexpected error";
       });
   }
 })();
 
 const signup = () => {
+  error.value = null;
   const data = {
     "email": email.value,
     "password": password.value,
@@ -45,11 +46,10 @@ const signup = () => {
   api.post("auth", data)
     .then((r) => {
       const data = r.data.data;
-      persist(data.token);
       router.push({ name: data.isMember ? "dashboard" : "signup_organization" });
     })
     .catch((e) => {
-      error.value = e.response.data.message;
+      error.value = e.response?.data?.message || "Unexpected error";
     });
 };
 </script>
