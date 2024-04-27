@@ -12,7 +12,7 @@ const user = computed(() => userStore.get)
   <nav class="navbar" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <RouterLink class="navbar-item" to="/">
-        <img src="https://picsum.photos/112/23" width="112" height="28">
+        <img src="https://picsum.photos/112/23" width="112" height="28" alt="">
       </RouterLink>
 
       <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
