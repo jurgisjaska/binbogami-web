@@ -1,11 +1,23 @@
 <script setup>
-import { RouterLink } from "vue-router"
+import { RouterLink, useRouter } from "vue-router";
 import { computed } from "vue";
 import { useUserStore } from "@/store/user.js";
+import { useTokenStore } from "@/store/token.js";
+import { useOrganizationStore } from "@/store/organization.js";
 
 const userStore = useUserStore()
+const tokenStore = useTokenStore()
+const organizationStore = useOrganizationStore()
+const router = useRouter()
 const user = computed(() => userStore.get)
 
+const signout = () => {
+  tokenStore.clear();
+  userStore.clear();
+  organizationStore.clear();
+
+  router.push({name: "home"});
+}
 </script>
 
 <template>
@@ -56,10 +68,11 @@ const user = computed(() => userStore.get)
         </div>
         <div class="navbar-item">
           <div class="buttons">
-            <RouterLink class="button is-primary" :to="{name: 'signup', params: {invitation: ''}}">
+            <RouterLink class="button is-primary" :to="{name: 'signup', params: {invitation: ''}}" v-if="!user">
               <strong>Sign up</strong>
             </RouterLink>
-            <RouterLink class="button is-light" :to="{name: 'signin'}">Sign in</RouterLink>
+            <RouterLink class="button is-light" :to="{name: 'signin'}" v-if="!user">Sign in</RouterLink>
+            <button class="button is-danger" @click.prevent="signout" v-if="user">Sign out</button>
           </div>
         </div>
       </div>
