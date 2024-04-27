@@ -15,7 +15,7 @@ const router = useRouter();
 const email = ref("");
 const password = ref("");
 
-const error = ref("");
+const error = ref(null);
 
 const signin = () => {
   error.value = null;
@@ -41,14 +41,13 @@ const signin = () => {
       }
 
       if (member && !organization) {
-        router.push({ name: "signin_organization" });
+        router.push({ name: "signin_organization"});
         return;
       }
 
       router.push({ name: "dashboard" });
     })
     .catch((e) => {
-      console.error(e);
       error.value = e.response?.data?.message || "Unexpected error";
     });
 };

@@ -1,27 +1,50 @@
-import axios from "axios"
-import router from "./router"
+import axios from "axios";
+import router from "./router";
+
+import { useTokenStore } from "@/store/token.js";
+import { useUserStore } from "@/store/user.js";
+import { useOrganizationStore } from "@/store/organization.js";
 
 const api = axios.create({
-  baseURL: import.meta.env.VITE_APP_URL || "http://localhost:8101"
-})
+  baseURL: import.meta.env.VITE_APP_URL || "http://localhost:8101",
+});
 
 api.interceptors.request.use(
   (config) => {
-    const token = localStorage.getItem("binbogami_token")
+    const token = localStorage.getItem("binbogami_token");
 
     // @todo this should be changed later
     if (token && config.url.includes("v1/")) {
-      config.headers.Authorization = `Bearer ${token}`
+      config.headers.Authorization = `Bearer ${token}`;
     }
 
-    return config
+    return config;
   },
   (error) => {
     if (error.response.status === 401) {
-      router.push("/signin")
+      useTokenStore().clear();
+      useUserStore().clear();
+      useOrganizationStore().clear();
+
+      router.push("/signin");
     }
     return Promise.reject(error);
-  }
+  },
 );
 
-export default api
+api.interceptors.response.use(
+  (response) => {
+    return response
+  },
+  (error) => {
+    if (error.response.status === 401) {
+      useTokenStore().clear();
+      useUserStore().clear();
+      useOrganizationStore().clear();
+
+      router.push("/signin");
+    }
+    return Promise.reject(error);
+  });
+
+export default api;

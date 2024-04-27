@@ -1,12 +1,42 @@
 <script setup>
-//
+import OrganizationCard from "@/component/organization/OrganizationCard.vue";
+import { ref } from "vue";
+import api from "@/api.js";
+
+const organizations = ref(null);
+let number = 0;
+const error = ref(null);
+
+(() => {
+  api.get("/v1/organizations")
+    .then((r) => {
+      organizations.value = r.data.data;
+      number = 5 - organizations.value.length;
+      console.log(number);
+    })
+    .catch((e) => {
+      error.value = e.response?.data?.message || "Unexpected error";
+    });
+})();
 </script>
 
 <template>
   <div class="signin-organization-view">
-    // blocks with the organizations
-    // on click
-    //    update user default organization in the backend
-    //    redirect to dashboard
+
+    <div class="notification is-danger" v-if="error">
+      <p>{{ error }}</p>
+    </div>
+
+    <div class="columns">
+      <div class="column" v-for="organization in organizations" :key="organization.id">
+        <OrganizationCard
+          :name="organization.name"
+          :description="organization.description"
+          :organization="organization.id"
+        />
+      </div>
+      <div class="column" v-for="i in number" :key="i"></div>
+    </div>
+
   </div>
 </template>
