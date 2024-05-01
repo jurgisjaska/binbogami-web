@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router"
 import HomeView from "@/view/HomeView.vue"
+import DefaultLayout from "@/layout/DefaultLayout.vue";
+import DashboardLayout from "@/layout/DashboardLayout.vue";
 
 // @todo add before checks for the token
 
@@ -9,40 +11,58 @@ const router = createRouter({
     {
       path: "/",
       name: "home",
-      component: HomeView
+      component: HomeView,
+      meta: {
+        layout: DefaultLayout
+      }
     },
     {
       path: "/about",
       name: "about",
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import("@/view/AboutView.vue")
+      component: () => import("@/view/AboutView.vue"),
+      meta: {
+        layout: DefaultLayout
+      }
     },
     {
       path: "/dashboard",
       name: "dashboard",
-      component: () => import("@/view/DashboardView.vue")
+      component: () => import("@/view/DashboardView.vue"),
+      meta: {
+        layout: DashboardLayout
+      }
     },
     {
       path: "/signin",
       name: "signin",
-      component: () => import("@/view/SigninView.vue")
+      component: () => import("@/view/SigninView.vue"),
+      meta: {
+        layout: DefaultLayout
+      }
     },
     {
       path: "/signin/organization",
       name: "signin_organization",
-      component: () => import("@/view/SigninOrganizationView.vue")
+      component: () => import("@/view/SigninOrganizationView.vue"),
+      meta: {
+        layout: DefaultLayout
+      }
     },
     {
       path: "/signup/organization",
       name: "signup_organization",
-      component: () => import("@/view/SignupOrganizationView.vue")
+      component: () => import("@/view/SignupOrganizationView.vue"),
+      meta: {
+        layout: DefaultLayout
+      }
     },
     {
       path: "/signup/:invitation?",
       name: "signup",
-      component: () => import("@/view/SignupView.vue")
+      component: () => import("@/view/SignupView.vue"),
+      meta: {
+        layout: DefaultLayout
+      }
     }
   ]
 })

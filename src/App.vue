@@ -4,11 +4,12 @@ import NavigationBar from "@/component/navigation/NavigationBar.vue"
 </script>
 
 <template>
-  <header>
-    <NavigationBar></NavigationBar>
-  </header>
+  <Component :is="$route.meta.layout || 'div'">
+    <header>
+      <NavigationBar></NavigationBar>
+    </header>
 
-  <div class="container">
     <RouterView />
-  </div>
+  </Component>
+
 </template>
