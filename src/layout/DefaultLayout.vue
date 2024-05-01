@@ -1,8 +1,11 @@
 <script setup>
 
+import NavigationBar from "@/component/navigation/NavigationBar.vue";
 </script>
 
 <template>
-  default
-    <slot/>
+  <header>
+    <NavigationBar></NavigationBar>
+  </header>
+  <slot />
 </template>

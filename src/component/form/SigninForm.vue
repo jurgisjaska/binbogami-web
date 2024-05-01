@@ -4,7 +4,7 @@ import api from "@/api.js";
 import { useTokenStore } from "@/store/token.js";
 import { useUserStore } from "@/store/user.js";
 import { useOrganizationStore } from "@/store/organization.js";
-import { useRouter } from "vue-router";
+import { RouterLink, useRouter } from "vue-router";
 
 const tokenStore = useTokenStore();
 const userStore = useUserStore();
@@ -71,7 +71,12 @@ const signin = () => {
     </div>
 
     <div class="field">
-      <div class="label">Password</div>
+      <div class="label">
+        Password
+        <RouterLink :to="{name: 'forgot-password'}" class="forgot-password is-pulled-right has-text-link">
+          Forgot password?
+        </RouterLink>
+      </div>
       <div class="control has-icons-left">
         <input type="password" class="input" placeholder="Password" v-model="password">
         <span class="icon is-small is-left">
@@ -80,7 +85,20 @@ const signin = () => {
       </div>
     </div>
 
-    <button type="submit" class="button is-primary">Sign In</button>
+    <button type="submit" class="button is-primary is-fullwidth mt-6">Sign In</button>
+
+    <hr>
+
+    <div class="has-text-centered">
+      Dont have an account?
+      <RouterLink class="is-link" :to="{name: 'signup', params: {invitation: ''}}">Sign Up</RouterLink>
+    </div>
 
   </form>
 </template>
+
+<style scoped>
+  .forgot-password {
+    font-weight: normal;
+  }
+</style>

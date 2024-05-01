@@ -2,8 +2,9 @@ import { createRouter, createWebHistory } from "vue-router"
 import HomeView from "@/view/HomeView.vue"
 import DefaultLayout from "@/layout/DefaultLayout.vue";
 import DashboardLayout from "@/layout/DashboardLayout.vue";
+import AuthLayout from "@/layout/AuthLayout.vue";
 
-// @todo add before checks for the token
+// @todo add before checks for the token`
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -35,17 +36,25 @@ const router = createRouter({
     {
       path: "/signin",
       name: "signin",
-      component: () => import("@/view/SigninView.vue"),
+      component: () => import("@/view/auth/SigninView.vue"),
       meta: {
-        layout: DefaultLayout
+        layout: AuthLayout
       }
     },
     {
       path: "/signin/organization",
       name: "signin_organization",
-      component: () => import("@/view/SigninOrganizationView.vue"),
+      component: () => import("@/view/auth/SigninOrganizationView.vue"),
       meta: {
         layout: DefaultLayout
+      }
+    },
+    {
+      path: "/forgot-password",
+      name: "forgot-password",
+      component: () => import("@/view/auth/ForgotPasswordView.vue"),
+      meta: {
+        layout: AuthLayout
       }
     },
     {
