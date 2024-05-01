@@ -5,6 +5,8 @@ import { useTokenStore } from "@/store/token.js";
 import { useUserStore } from "@/store/user.js";
 import { useOrganizationStore } from "@/store/organization.js";
 import { RouterLink, useRouter } from "vue-router";
+import EmailField from "@/component/form/EmailField.vue";
+import PasswordField from "@/component/form/PasswordField.vue";
 
 const tokenStore = useTokenStore();
 const userStore = useUserStore();
@@ -60,30 +62,8 @@ const signin = () => {
       <p>{{ error }}</p>
     </div>
 
-    <div class="field">
-      <div class="label">Email</div>
-      <div class="control has-icons-left">
-        <input type="email" class="input" placeholder="Email" v-model="email">
-        <span class="icon is-small is-left">
-          <i class="fas fa-user"></i>
-        </span>
-      </div>
-    </div>
-
-    <div class="field">
-      <div class="label">
-        Password
-        <RouterLink :to="{name: 'forgot-password'}" class="forgot-password is-pulled-right has-text-link">
-          Forgot password?
-        </RouterLink>
-      </div>
-      <div class="control has-icons-left">
-        <input type="password" class="input" placeholder="Password" v-model="password">
-        <span class="icon is-small is-left">
-          <i class="fas fa-key"></i>
-        </span>
-      </div>
-    </div>
+    <EmailField v-model="email"/>
+    <PasswordField v-model="password" :forgot="true"/>
 
     <button type="submit" class="button is-primary is-fullwidth mt-6">Sign In</button>
 
@@ -96,9 +76,3 @@ const signin = () => {
 
   </form>
 </template>
-
-<style scoped>
-  .forgot-password {
-    font-weight: normal;
-  }
-</style>

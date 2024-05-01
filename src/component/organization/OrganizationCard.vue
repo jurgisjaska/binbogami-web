@@ -4,6 +4,7 @@ import api from "@/api.js";
 import { useOrganizationStore } from "@/store/organization.js";
 import { useRouter } from "vue-router";
 
+// @todo is it necessary to have `const props` ?
 const props = defineProps({
   name: {
     type: String,

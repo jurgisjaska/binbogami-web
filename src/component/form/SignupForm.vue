@@ -1,11 +1,13 @@
 <script setup>
 import { ref } from "vue";
 import FormField from "@/component/form/FormField.vue";
-import { useRoute, useRouter } from "vue-router";
+import EmailField from "@/component/form/EmailField.vue";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 import api from "@/api.js";
 import { useTokenStore } from "@/store/token.js";
 import { useUserStore } from "@/store/user.js";
 import { useOrganizationStore } from "@/store/organization.js";
+import PasswordField from "@/component/form/PasswordField.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -56,9 +58,9 @@ const signup = () => {
     .then((r) => {
       const data = r.data.data;
 
-      userStore.set(data.user)
-      tokenStore.set(data.token)
-      organizationStore.set(data.organization)
+      userStore.set(data.user);
+      tokenStore.set(data.token);
+      organizationStore.set(data.organization);
 
       router.push({ name: data.member ? "dashboard" : "signup_organization" });
     })
@@ -90,12 +92,20 @@ const signup = () => {
   </div>
 
   <form class="signup-form" @submit.prevent="signup">
-    <FormField label="Email" type="email" v-model="email" />
-    <FormField label="Password" type="password" v-model="password" />
+    <EmailField v-model="email"/>
+    <PasswordField v-model="password"/>
     <FormField label="Repeated Password" type="password" v-model="repeatedPassword" />
     <FormField label="Name" type="text" v-model="name" />
     <FormField label="Surname" type="text" v-model="surname" />
 
-    <button type="submit" class="button is-primary">Sign Up</button>
+    <button type="submit" class="button is-primary  is-fullwidth mt-6">Sign Up</button>
+
+    <hr>
+
+    <div class="has-text-centered">
+      Already have an account?
+      <RouterLink class="is-link" :to="{name: 'signin'}">Sign In</RouterLink>
+    </div>
+
   </form>
 </template>

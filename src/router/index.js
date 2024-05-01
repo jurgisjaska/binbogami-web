@@ -60,7 +60,7 @@ const router = createRouter({
     {
       path: "/signup/organization",
       name: "signup_organization",
-      component: () => import("@/view/SignupOrganizationView.vue"),
+      component: () => import("@/view/auth/SignupOrganizationView.vue"),
       meta: {
         layout: DefaultLayout
       }
@@ -68,9 +68,9 @@ const router = createRouter({
     {
       path: "/signup/:invitation?",
       name: "signup",
-      component: () => import("@/view/SignupView.vue"),
+      component: () => import("@/view/auth/SignupView.vue"),
       meta: {
-        layout: DefaultLayout
+        layout: AuthLayout
       }
     }
   ]
