@@ -33,19 +33,16 @@ const createOrganization = () => {
 </script>
 
 <template>
-
   <div class="notification is-danger" v-if="error">
     <p>{{ error }}</p>
   </div>
 
   <form class="signup-organization-form" @submit.prevent="createOrganization">
+    <h1>Create organization</h1>
+
     <FormField label="Name" type="text" v-model="name" />
     <FormField label="Description" type="text" v-model="description" />
 
     <button type="submit" class="button is-primary">Create Organization</button>
   </form>
 </template>
-
-<style scoped>
-
-</style>

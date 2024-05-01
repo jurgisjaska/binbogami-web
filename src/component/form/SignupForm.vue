@@ -3,18 +3,27 @@ import { ref } from "vue";
 import FormField from "@/component/form/FormField.vue";
 import { useRoute, useRouter } from "vue-router";
 import api from "@/api.js";
+import { useTokenStore } from "@/store/token.js";
+import { useUserStore } from "@/store/user.js";
+import { useOrganizationStore } from "@/store/organization.js";
 
 const router = useRouter();
 const route = useRoute();
 
-const email = ref("");
-const password = ref("");
-const repeatedPassword = ref("");
-const name = ref("");
-const surname = ref("");
+const tokenStore = useTokenStore();
+const userStore = useUserStore();
+const organizationStore = useOrganizationStore();
 
-const error = ref("");
-const invitation = ref("");
+const email = ref(null);
+const password = ref(null);
+const repeatedPassword = ref(null);
+const name = ref(null);
+const surname = ref(null);
+
+const error = ref(null);
+
+// load details about invitation
+const invitation = ref(null);
 (() => {
   const invitationId = route.params.invitation ?? null;
   if (invitationId) {
@@ -46,7 +55,12 @@ const signup = () => {
   api.post("auth", data)
     .then((r) => {
       const data = r.data.data;
-      router.push({ name: data.isMember ? "dashboard" : "signup_organization" });
+
+      userStore.set(data.user)
+      tokenStore.set(data.token)
+      organizationStore.set(data.organization)
+
+      router.push({ name: data.member ? "dashboard" : "signup_organization" });
     })
     .catch((e) => {
       error.value = e.response?.data?.message || "Unexpected error";
