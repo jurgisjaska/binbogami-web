@@ -33,6 +33,7 @@ const reset = () => {
   const data = {
     "password": password.value,
     "repeatedPassword": repeatedPassword.value,
+    "token": token.value,
   };
 
   api.post("auth/reset-password", data)
