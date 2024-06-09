@@ -41,7 +41,7 @@ const forgot = () => {
       <p>{{ success }}</p>
     </div>
 
-    <p>
+    <p class="mb-6">
       Please enter your registered email address
       below and we'll send you instructions on how to reset your password.
     </p>

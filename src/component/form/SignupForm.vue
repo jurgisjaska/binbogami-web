@@ -25,6 +25,7 @@ const surname = ref(null);
 const error = ref(null);
 
 // load details about invitation
+
 const invitation = ref(null);
 (() => {
   const invitationId = route.params.invitation ?? null;
