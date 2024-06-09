@@ -1,12 +1,12 @@
 <script setup>
-import { ref } from "vue";
 import api from "@/api.js";
-import { useTokenStore } from "@/store/token.js";
-import { useUserStore } from "@/store/user.js";
-import { useOrganizationStore } from "@/store/organization.js";
-import { RouterLink, useRouter } from "vue-router";
 import EmailField from "@/component/form/EmailField.vue";
 import PasswordField from "@/component/form/PasswordField.vue";
+import { useOrganizationStore } from "@/store/organization.js";
+import { useTokenStore } from "@/store/token.js";
+import { useUserStore } from "@/store/user.js";
+import { ref } from "vue";
+import { RouterLink, useRouter } from "vue-router";
 
 const tokenStore = useTokenStore();
 const userStore = useUserStore();
@@ -26,7 +26,7 @@ const signin = () => {
     "password": password.value,
   };
 
-  api.put("auth", data)
+  api.put("auth/signin", data)
     .then((r) => {
       const token = r.data.data.token;
       const user = r.data.data.user;
@@ -43,7 +43,7 @@ const signin = () => {
       }
 
       if (member && !organization) {
-        router.push({ name: "signin_organization"});
+        router.push({ name: "signin_organization" });
         return;
       }
 
@@ -62,11 +62,11 @@ const signin = () => {
       <p>{{ error }}</p>
     </div>
 
-    <EmailField v-model="email"/>
-    <PasswordField v-model="password" :forgot="true"/>
+    <EmailField v-model="email" />
+    <PasswordField v-model="password" :forgot="true" />
 
     <button type="submit" class="button is-primary is-fullwidth mt-6">Sign In</button>
-
+    Se
     <hr>
 
     <div class="has-text-centered">

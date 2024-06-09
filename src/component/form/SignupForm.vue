@@ -54,7 +54,7 @@ const signup = () => {
     data.invitationId = invitation.value.invitation.id;
   }
 
-  api.post("auth", data)
+  api.post("auth/signup", data)
     .then((r) => {
       const data = r.data.data;
 
