@@ -1,13 +1,13 @@
 <script setup>
-import { ref } from "vue";
-import FormField from "@/component/form/FormField.vue";
-import EmailField from "@/component/form/EmailField.vue";
-import { RouterLink, useRoute, useRouter } from "vue-router";
 import api from "@/api.js";
+import EmailField from "@/component/form/EmailField.vue";
+import FormField from "@/component/form/FormField.vue";
+import PasswordField from "@/component/form/PasswordField.vue";
+import { useOrganizationStore } from "@/store/organization.js";
 import { useTokenStore } from "@/store/token.js";
 import { useUserStore } from "@/store/user.js";
-import { useOrganizationStore } from "@/store/organization.js";
-import PasswordField from "@/component/form/PasswordField.vue";
+import { ref } from "vue";
+import { RouterLink, useRoute, useRouter } from "vue-router";
 
 const router = useRouter();
 const route = useRoute();
@@ -15,6 +15,8 @@ const route = useRoute();
 const tokenStore = useTokenStore();
 const userStore = useUserStore();
 const organizationStore = useOrganizationStore();
+
+const invitation = ref(null);
 
 const email = ref(null);
 const password = ref(null);
@@ -24,21 +26,17 @@ const surname = ref(null);
 
 const error = ref(null);
 
-// load details about invitation
-
-const invitation = ref(null);
 (() => {
-  const invitationId = route.params.invitation ?? null;
-  if (invitationId) {
-    error.value = null;
-    api.get("/p/invitation/" + invitationId)
-      .then((r) => {
-        invitation.value = r.data.data;
-      })
-      .catch((e) => {
-        error.value = e.response?.data?.message || "Unexpected error";
-      });
-  }
+  const id = route.params.invitation ?? null;
+  error.value = null;
+  api.get("/p/invitation/" + id)
+    .then((r) => {
+      invitation.value = r.data.data;
+    })
+    .catch((e) => {
+      console.error(e.response?.data?.message || "Unexpected error");
+      router.push({ name: "signup" });
+    });
 })();
 
 const signup = () => {
@@ -72,20 +70,22 @@ const signup = () => {
 </script>
 
 <template>
-  <div class="card" v-if="invitation">
-    <div class="card-header">
+  <div class="card mb-4" v-if="invitation">
+    <header class="card-header">
       <div class="card-header-title">
         {{ invitation.organization.name }}
       </div>
-    </div>
+    </header>
     <div class="card-content">
       <div class="content">
         {{ invitation.organization.description }}
-        <br>
-        Expire on {{ invitation.invitation.expiredAt }}
-        <time :datetime="invitation.invitation.expiredAt">{{ invitation.invitation.expiredAt }}</time>
       </div>
     </div>
+    <footer class="card-footer has-text-left">
+      <div class="card-footer-item has-text-left is-small">
+        Expire on&nbsp;<time :datetime="invitation.invitation.expiredAt">{{ invitation.invitation.expiredAt }}</time>
+      </div>
+    </footer>
   </div>
 
   <div class="notification is-danger" v-if="error">
@@ -93,8 +93,8 @@ const signup = () => {
   </div>
 
   <form class="signup-form" @submit.prevent="signup">
-    <EmailField v-model="email"/>
-    <PasswordField v-model="password"/>
+    <EmailField v-model="email" />
+    <PasswordField v-model="password" />
     <FormField label="Repeated Password" type="password" v-model="repeatedPassword" />
     <FormField label="Name" type="text" v-model="name" />
     <FormField label="Surname" type="text" v-model="surname" />

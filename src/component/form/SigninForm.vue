@@ -66,7 +66,7 @@ const signin = () => {
     <PasswordField v-model="password" :forgot="true" />
 
     <button type="submit" class="button is-primary is-fullwidth mt-6">Sign In</button>
-    Se
+
     <hr>
 
     <div class="has-text-centered">

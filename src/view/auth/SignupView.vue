@@ -8,6 +8,6 @@ import SignupForm from "@/component/form/SignupForm.vue"
     <h1>Sign Up</h1>
   </header>
 
-  <SignupForm/>
+  <SignupForm />
 </div>
 </template>
