@@ -5,7 +5,7 @@ import NavigationBar from "@/component/navigation/NavigationBar.vue";
 
 <template>
   <header>
-    <NavigationBar></NavigationBar>
+    <NavigationBar />
   </header>
   <slot />
 </template>

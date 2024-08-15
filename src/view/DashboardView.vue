@@ -1,5 +1,5 @@
 <template>
-  <main>
+  <div>
     // dashboard with all kind of statistics of the organization
-  </main>
+  </div>
 </template>

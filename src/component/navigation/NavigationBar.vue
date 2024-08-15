@@ -1,27 +1,27 @@
 <script setup>
-import { RouterLink, useRouter } from "vue-router";
-import { computed } from "vue";
-import { useUserStore } from "@/store/user.js";
-import { useTokenStore } from "@/store/token.js";
 import { useOrganizationStore } from "@/store/organization.js";
+import { useTokenStore } from "@/store/token.js";
+import { useUserStore } from "@/store/user.js";
+import { computed } from "vue";
+import { RouterLink, useRouter } from "vue-router";
 
-const userStore = useUserStore()
-const tokenStore = useTokenStore()
-const organizationStore = useOrganizationStore()
-const router = useRouter()
-const user = computed(() => userStore.get)
+const userStore = useUserStore();
+const tokenStore = useTokenStore();
+const organizationStore = useOrganizationStore();
+const router = useRouter();
+const user = computed(() => userStore.get);
 
 const signout = () => {
   tokenStore.clear();
   userStore.clear();
   organizationStore.clear();
 
-  router.push({name: "home"});
-}
+  router.push({ name: "home" });
+};
 </script>
 
 <template>
-  <nav class="navbar" role="navigation" aria-label="main navigation">
+  <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
     <div class="navbar-brand">
       <RouterLink class="navbar-item" to="/">
         <img src="https://picsum.photos/112/23" width="112" height="28" alt="">
