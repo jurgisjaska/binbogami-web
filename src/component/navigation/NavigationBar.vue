@@ -21,61 +21,59 @@ const signout = () => {
 </script>
 
 <template>
-  <nav class="navbar has-shadow" role="navigation" aria-label="main navigation">
-    <div class="navbar-brand">
-      <RouterLink class="navbar-item" to="/">
-        <img src="https://picsum.photos/112/23" width="112" height="28" alt="">
-      </RouterLink>
-
-      <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-        <span aria-hidden="true"></span>
-      </a>
-    </div>
-
-    <div id="navbarBasicExample" class="navbar-menu">
-      <div class="navbar-start">
-        <RouterLink class="navbar-item" to="/">Home</RouterLink>
-        <RouterLink class="navbar-item" to="/about">About</RouterLink>
-
-        <div class="navbar-item has-dropdown is-hoverable">
-          <a class="navbar-link">
-            More
-          </a>
-
-          <div class="navbar-dropdown">
-            <a class="navbar-item">
-              About
-            </a>
-            <a class="navbar-item">
-              Jobs
-            </a>
-            <a class="navbar-item">
-              Contact
-            </a>
-            <hr class="navbar-divider">
-            <a class="navbar-item">
-              Report an issue
-            </a>
-          </div>
-        </div>
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+        <RouterLink class="navbar-brand" to="/">Binbogami</RouterLink>
       </div>
 
-      <div class="navbar-end">
-        <div class="navbar-item">
-          {{ user?.name }} {{ user?.surname }}
-        </div>
-        <div class="navbar-item">
-          <div class="buttons">
-            <RouterLink class="button is-primary" :to="{name: 'signup', params: {invitation: ''}}" v-if="!user">
-              <strong>Sign up</strong>
-            </RouterLink>
-            <RouterLink class="button is-light" :to="{name: 'signin'}" v-if="!user">Sign in</RouterLink>
-            <button class="button is-danger" @click.prevent="signout" v-if="user">Sign out</button>
-          </div>
-        </div>
+      <ul class="navbar-nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Books</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Locations</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Categories</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#">Entries</a>
+        </li>
+      </ul>
+
+      <div class="flex-shrink-0 dropdown">
+        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle show"
+           data-bs-toggle="dropdown" aria-expanded="true">
+          <img src="https://avatars.githubusercontent.com/u/897925?v=4" alt="mdo" width="32" height="32"
+               class="rounded-circle">
+        </a>
+        <ul class="dropdown-menu text-small shadow show"
+            style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0.5px, 34px, 0px);"
+            data-popper-placement="bottom-end">
+          <li><a class="dropdown-item" href="#">Organizations</a></li>
+          <li><a class="dropdown-item" href="#">Settings</a></li>
+          <li>
+            <a class="dropdown-item" href="#">
+              <i class="fa-regular fa-user"></i> Profile
+            </a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li>
+            <a class="dropdown-item" @click.prevent="signout" v-if="user">
+              <i class="fa-solid fa-right-from-bracket"></i> Sign out
+            </a>
+          </li>
+        </ul>
       </div>
+
     </div>
   </nav>
+
+
 </template>

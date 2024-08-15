@@ -1,9 +1,10 @@
-<script setup lang="ts">
-import SideMenu from '@/component/navigation/SideMenu.vue'
+<script setup>
+import NavigationBar from "@/component/navigation/NavigationBar.vue";
 </script>
 
 <template>
-    <div class="container-fluid">
-      asd
+    <div class="container">
+      <NavigationBar />
+      <slot/>
     </div>
 </template>
