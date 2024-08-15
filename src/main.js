@@ -1,4 +1,8 @@
-import "bulma/bulma.scss"
+// bootstrap
+import "bootstrap/scss/bootstrap.scss"
+import "bootstrap/dist/js/bootstrap.bundle.js"
+
+// binbogami
 import "@/asset/main.scss"
 
 import { createApp } from "vue"
