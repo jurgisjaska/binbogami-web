@@ -27,7 +27,7 @@ const signout = () => {
         <RouterLink class="navbar-brand" to="/">Binbogami</RouterLink>
       </div>
 
-      <ul class="navbar-nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+      <ul class="navbar-nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" v-if="user">
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
         </li>
@@ -45,7 +45,7 @@ const signout = () => {
         </li>
       </ul>
 
-      <div class="flex-shrink-0 dropdown">
+      <div class="flex-shrink-0 dropdown" v-if="user">
         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle show"
            data-bs-toggle="dropdown" aria-expanded="true">
           <img src="https://avatars.githubusercontent.com/u/897925?v=4" alt="mdo" width="32" height="32"
@@ -70,6 +70,15 @@ const signout = () => {
             </a>
           </li>
         </ul>
+      </div >
+
+      <div class="text-end" v-if="!user">
+        <RouterLink class="btn btn-primary me-2" :to="{name: 'signin'}" v-if="!user">
+          Sign in
+        </RouterLink>
+        <RouterLink class="btn btn-secondary" :to="{name: 'signup', params: {invitation: ''}}" v-if="!user">
+          Sign up
+        </RouterLink>
       </div>
 
     </div>
