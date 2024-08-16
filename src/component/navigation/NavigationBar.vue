@@ -1,4 +1,5 @@
 <script setup>
+import OrganizationManager from "@/component/organization/OrganizationManager.vue";
 import { useOrganizationStore } from "@/store/organization.js";
 import { useTokenStore } from "@/store/token.js";
 import { useUserStore } from "@/store/user.js";
@@ -45,16 +46,17 @@ const signout = () => {
         </li>
       </ul>
 
+      <OrganizationManager v-if="user"/>
+
       <div class="flex-shrink-0 dropdown" v-if="user">
         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle show"
            data-bs-toggle="dropdown" aria-expanded="true">
-          <img src="https://avatars.githubusercontent.com/u/897925?v=4" alt="mdo" width="32" height="32"
+          <img src="https://avatars.githubusercontent.com/u/897925?v=4" alt="mdo" width="38" height="38"
                class="rounded-circle">
         </a>
         <ul class="dropdown-menu text-small shadow"
             style=""
             data-popper-placement="bottom-end">
-          <li><a class="dropdown-item" href="#">Organizations</a></li>
           <li><a class="dropdown-item" href="#">Settings</a></li>
           <li>
             <a class="dropdown-item" href="#">
