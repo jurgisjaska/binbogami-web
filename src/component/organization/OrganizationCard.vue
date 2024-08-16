@@ -32,8 +32,6 @@ const open = () => {
 
   api.put("/v1/users/configurations", data)
     .then((r) => {
-      console.log(r)
-
       const organization = r.data.data.organization;
       organizationStore.set(organization);
       router.push({ name: "dashboard" });
@@ -47,30 +45,40 @@ const open = () => {
 </script>
 
 <template>
-  <div class="card">
-    <div class="card-image">
-      <figure class="image is-4by3">
+  <div class="card mb-3">
+
+    <div class="row g-0">
+      <div class="col-4">
         <img
+          class="img-fluid rounded-start"
           src="https://picsum.photos/200/200"
           alt="Placeholder image"
         />
-      </figure>
+      </div>
+      <div class="col-8">
+        <header class="card-header">
+          <h5 class="card-title mb-0">{{ props.name }}</h5>
+        </header>
+
+        <div class="card-body">
+          <div class="card-text">{{ props.description }}</div>
+        </div>
+
+        <footer class="card-footer">
+          <a href="#" class="btn btn-primary" @click.prevent="open">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> Open
+          </a>
+        </footer>
+      </div>
     </div>
 
-    <header class="card-header">
-      <p class="card-header-title">{{ props.name }}</p>
-    </header>
-
-    <div class="card-content">
-      <div class="content">{{ props.description }}</div>
-    </div>
-
-    <footer class="card-footer">
-      <a href="#" class="card-footer-item" @click.prevent="open">Open</a>
-    </footer>
   </div>
 </template>
 
 <style scoped>
-
+.img-fluid {
+  width: 100%;
+  height: 100%;
+  object-fit: fill;
+}
 </style>

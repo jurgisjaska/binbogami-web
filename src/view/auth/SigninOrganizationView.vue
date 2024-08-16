@@ -11,7 +11,7 @@ const error = ref(null);
   api.get("/v1/organizations")
     .then((r) => {
       organizations.value = r.data.data;
-      number = 5 - organizations.value.length;
+      number = 2 - organizations.value.length;
       console.log(number);
     })
     .catch((e) => {
@@ -22,25 +22,18 @@ const error = ref(null);
 
 <template>
   <div class="signin-organization-view">
-
     <div class="alert alert-danger" v-if="error">{{ error }}</div>
 
-    <div class="columns">
-      <div class="column" v-for="organization in organizations" :key="organization.id">
+    <div class="row">
+      <div class="col-6" v-for="organization in organizations" :key="organization.id">
         <OrganizationCard
           :name="organization.name"
           :description="organization.description"
           :organization="organization.id"
         />
       </div>
-      <div class="column" v-for="i in number" :key="i"></div>
+      <div class="col-6" v-for="i in number" :key="i"></div>
     </div>
 
   </div>
 </template>
-
-<style scoped>
-.signin-organization-view {
-  width: 25rem
-}
-</style>
