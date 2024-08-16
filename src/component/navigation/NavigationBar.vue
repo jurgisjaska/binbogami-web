@@ -51,8 +51,8 @@ const signout = () => {
           <img src="https://avatars.githubusercontent.com/u/897925?v=4" alt="mdo" width="32" height="32"
                class="rounded-circle">
         </a>
-        <ul class="dropdown-menu text-small shadow show"
-            style="position: absolute; inset: 0px 0px auto auto; margin: 0px; transform: translate3d(0.5px, 34px, 0px);"
+        <ul class="dropdown-menu text-small shadow"
+            style=""
             data-popper-placement="bottom-end">
           <li><a class="dropdown-item" href="#">Organizations</a></li>
           <li><a class="dropdown-item" href="#">Settings</a></li>
@@ -70,7 +70,7 @@ const signout = () => {
             </a>
           </li>
         </ul>
-      </div >
+      </div>
 
       <div class="text-end" v-if="!user">
         <RouterLink class="btn btn-primary me-2" :to="{name: 'signin'}" v-if="!user">
@@ -83,6 +83,13 @@ const signout = () => {
 
     </div>
   </nav>
-
-
 </template>
+
+<style scoped>
+.dropdown-menu {
+  position: absolute;
+  inset: 0 0 auto auto;
+  margin: 0;
+  transform: translate3d(0.5px, 34px, 0px);
+}
+</style>
