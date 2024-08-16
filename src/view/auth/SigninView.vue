@@ -3,11 +3,17 @@ import SigninForm from "@/component/form/SigninForm.vue";
 </script>
 
 <template>
-  <div class="signin-view content">
-    <header class="has-text-centered mb-6">
-      <h1>Sign In</h1>
+  <div class="signin-view m-auto">
+    <header class="mb-6">
+      <h2>Sign In</h2>
     </header>
 
     <SigninForm />
   </div>
 </template>
+
+<style scoped>
+.signin-view {
+  width: 25rem
+}
+</style>

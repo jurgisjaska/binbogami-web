@@ -8,16 +8,14 @@ defineProps({
 </script>
 
 <template>
-  <div class="field">
-    <div class="label">{{ label }}</div>
-    <div class="control">
+  <div class="field mb-3">
+    <div class="form-label">{{ label }}</div>
       <input
-        class="input"
+        class="form-control"
         :type="type"
         :placeholder="placeholder || label"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
       />
-    </div>
   </div>
 </template>

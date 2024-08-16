@@ -1,18 +1,14 @@
 <template>
-  <div class="section">
-    <div class="columns is-centered is-vcentered">
-      <div class="column is-one-third">
-        <div class="box">
-          <slot />
-        </div>
-      </div>
+  <div class="container">
+    <div class="d-flex justify-content-center align-items-center">
+      <slot />
     </div>
 
   </div>
 </template>
 
 <style scoped>
-.section {
+.container > div {
   min-height: 100vh;
 }
 </style>

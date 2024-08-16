@@ -4,9 +4,9 @@ import ResetPasswordForm from "@/component/form/ResetPasswordForm.vue";
 </script>
 
 <template>
-  <div class="reset-password-view content">
+  <div class="reset-password-view m-auto">
     <header class="has-text-centered mb-6">
-      <h1>Reset Password</h1>
+      <h2>Reset Password</h2>
     </header>
 
     <ResetPasswordForm />
@@ -14,5 +14,7 @@ import ResetPasswordForm from "@/component/form/ResetPasswordForm.vue";
 </template>
 
 <style scoped>
-
+.reset-password-view {
+  width: 25rem
+}
 </style>

@@ -12,25 +12,23 @@ defineProps({
 </script>
 
 <template>
-  <div class="field">
-    <div class="label">
-      Password
+  <div class="field mb-3">
+    <label class="form-label d-flex justify-content-between">
+      <span>Password</span>
       <RouterLink
         :to="{name: 'forgot-password'}"
-        class="forgot-password is-pulled-right has-text-link"
+        class="forgot-password ms-auto"
         v-if="forgot"
       >
         Forgot password?
       </RouterLink>
-    </div>
-    <div class="control has-icons-left">
-      <input type="password" class="input" placeholder="Password"
+    </label>
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-key"></i></span>
+      <input type="password" class="form-control" placeholder="Password"
              :value="modelValue"
              @input="$emit('update:modelValue', $event.target.value)"
       >
-      <span class="icon is-small is-left">
-          <i class="fas fa-key"></i>
-      </span>
     </div>
   </div>
 </template>

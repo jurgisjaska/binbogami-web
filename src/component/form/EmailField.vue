@@ -5,19 +5,18 @@ defineProps({
 </script>
 
 <template>
-  <div class="field">
-    <div class="label">Email</div>
-    <div class="control has-icons-left">
+  <div class="field mb-3">
+    <label class="form-label">Email</label>
+
+    <div class="input-group">
+      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
       <input
         type="email"
-        class="input"
+        class="form-control"
         placeholder="Email"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
       >
-      <span class="icon is-small is-left">
-          <i class="fas fa-envelope"></i>
-        </span>
     </div>
   </div>
 </template>

@@ -48,11 +48,11 @@ const forgot = () => {
 
     <EmailField v-model="email" />
 
-    <button type="submit" class="button is-primary is-fullwidth mt-6">Send</button>
+    <button type="submit" class="btn btn-primary mt-6">Send</button>
 
     <hr>
 
-    <div class="has-text-centered">
+    <div>
       Dont have an account?
       <RouterLink class="is-link" :to="{name: 'signup', params: {invitation: ''}}">Sign Up</RouterLink>
     </div>

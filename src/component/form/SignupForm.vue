@@ -88,9 +88,7 @@ const signup = () => {
     </footer>
   </div>
 
-  <div class="notification is-danger" v-if="error">
-    <p>{{ error }}</p>
-  </div>
+  <div class="alert aler-danger" v-if="error">{{ error }}</div>
 
   <form class="signup-form" @submit.prevent="signup">
     <EmailField v-model="email" />
@@ -99,11 +97,17 @@ const signup = () => {
     <FormField label="Name" type="text" v-model="name" />
     <FormField label="Surname" type="text" v-model="surname" />
 
-    <button type="submit" class="button is-primary  is-fullwidth mt-6">Sign Up</button>
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary mt-6">Sign Up</button>
+
+      <button class="btn btn-secondary">
+        <i class="fa-brands fa-google"></i>
+      </button>
+    </div>
 
     <hr>
 
-    <div class="has-text-centered">
+    <div>
       Already have an account?
       <RouterLink class="is-link" :to="{name: 'signin'}">Sign In</RouterLink>
     </div>

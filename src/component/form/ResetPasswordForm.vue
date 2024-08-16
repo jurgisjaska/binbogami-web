@@ -51,9 +51,7 @@ const reset = () => {
 <template>
   <form class="reset-password-form" @submit.prevent="reset">
 
-    <div class="notification is-danger" v-if="error">
-      <p>{{ error }}</p>
-    </div>
+    <div class="alert alert-danger" v-if="error">{{ error }}</div>
 
     <p class="mb-6">
       You've requested to reset your password. Please enter your new password.
@@ -62,11 +60,11 @@ const reset = () => {
     <PasswordField v-model="password" />
     <FormField label="Repeated Password" type="password" v-model="repeatedPassword" />
 
-    <button type="submit" class="button is-primary is-fullwidth mt-6">Reset Password</button>
+    <button type="submit" class="btn btn-primary mt-6">Reset Password</button>
 
     <hr>
 
-    <div class="has-text-centered">
+    <div>
       Already have an account?
       <RouterLink class="is-link" :to="{name: 'signin'}">Sign In</RouterLink>
     </div>

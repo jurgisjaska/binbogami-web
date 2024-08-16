@@ -23,9 +23,7 @@ const error = ref(null);
 <template>
   <div class="signin-organization-view">
 
-    <div class="notification is-danger" v-if="error">
-      <p>{{ error }}</p>
-    </div>
+    <div class="alert alert-danger" v-if="error">{{ error }}</div>
 
     <div class="columns">
       <div class="column" v-for="organization in organizations" :key="organization.id">
@@ -40,3 +38,9 @@ const error = ref(null);
 
   </div>
 </template>
+
+<style scoped>
+.signin-organization-view {
+  width: 25rem
+}
+</style>

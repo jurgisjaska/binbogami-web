@@ -58,18 +58,22 @@ const signin = () => {
 <template>
   <form class="signin-form" @submit.prevent="signin">
 
-    <div class="notification is-danger" v-if="error">
-      <p>{{ error }}</p>
-    </div>
+    <div class="alert alert-danger" v-if="error">{{ error }}</div>
 
     <EmailField v-model="email" />
     <PasswordField v-model="password" :forgot="true" />
 
-    <button type="submit" class="button is-primary is-fullwidth mt-6">Sign In</button>
+    <div class="d-flex justify-content-between">
+      <button type="submit" class="btn btn-primary mt-6">Sign In</button>
+
+      <button class="btn btn-secondary">
+        <i class="fa-brands fa-google"></i>
+      </button>
+    </div>
 
     <hr>
 
-    <div class="has-text-centered">
+    <div>
       Dont have an account?
       <RouterLink class="is-link" :to="{name: 'signup', params: {invitation: ''}}">Sign Up</RouterLink>
     </div>
