@@ -12,7 +12,6 @@ const error = ref(null);
     .then((r) => {
       organizations.value = r.data.data;
       number = 2 - organizations.value.length;
-      console.log(number);
     })
     .catch((e) => {
       error.value = e.response?.data?.message || "Unexpected error";

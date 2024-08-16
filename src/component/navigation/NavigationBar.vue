@@ -65,7 +65,7 @@ const signout = () => {
             <hr class="dropdown-divider">
           </li>
           <li>
-            <a class="dropdown-item" @click.prevent="signout" v-if="user">
+            <a href="#" class="dropdown-item" @click.prevent="signout" v-if="user">
               <i class="fa-solid fa-right-from-bracket"></i> Sign out
             </a>
           </li>

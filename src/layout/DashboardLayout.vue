@@ -4,7 +4,10 @@ import NavigationBar from "@/component/navigation/NavigationBar.vue";
 
 <template>
     <div class="container">
-      <NavigationBar />
+      <header class="mb-4">
+        <NavigationBar />
+      </header>
+
       <slot/>
     </div>
 </template>
