@@ -1,8 +1,10 @@
-import { createRouter, createWebHistory } from "vue-router"
-import HomeView from "@/view/HomeView.vue"
-import DefaultLayout from "@/layout/DefaultLayout.vue";
 import DashboardLayout from "@/layout/DashboardLayout.vue";
-import AuthLayout from "@/layout/AuthLayout.vue";
+import DefaultLayout from "@/layout/DefaultLayout.vue";
+import HomeView from "@/view/HomeView.vue";
+import { createRouter, createWebHistory } from "vue-router";
+
+// separated routes
+import authRoutes from "./auth.js";
 
 // @todo add before checks for the token
 
@@ -14,74 +16,39 @@ const router = createRouter({
       name: "home",
       component: HomeView,
       meta: {
-        layout: DefaultLayout
-      }
+        layout: DefaultLayout,
+        title: "Home"
+      },
     },
+    ...authRoutes,
     {
       path: "/about",
       name: "about",
       component: () => import("@/view/AboutView.vue"),
       meta: {
-        layout: DefaultLayout
-      }
+        layout: DefaultLayout,
+        title: "About",
+      },
     },
     {
       path: "/dashboard",
       name: "dashboard",
       component: () => import("@/view/DashboardView.vue"),
       meta: {
-        layout: DashboardLayout
-      }
+        layout: DashboardLayout,
+        title: "Dashboard",
+      },
     },
     {
-      path: "/signin",
-      name: "signin",
-      component: () => import("@/view/auth/SigninView.vue"),
+      path: "/organizations/invitations",
+      name: "organizations_invitations",
+      component: () => import("@/view/organization/InvitationView.vue"),
       meta: {
-        layout: AuthLayout
-      }
+        layout: DashboardLayout,
+        title: "Invitations",
+      },
     },
-    {
-      path: "/signin/organization",
-      name: "signin_organization",
-      component: () => import("@/view/auth/SigninOrganizationView.vue"),
-      meta: {
-        layout: DefaultLayout
-      }
-    },
-    {
-      path: "/forgot-password",
-      name: "forgot-password",
-      component: () => import("@/view/auth/ForgotPasswordView.vue"),
-      meta: {
-        layout: AuthLayout
-      }
-    },
-    {
-      path: "/reset-password/:id",
-      name: "reset-password",
-      component: () => import("@/view/auth/ResetPasswordView.vue"),
-      meta: {
-        layout: AuthLayout
-      }
-    },
-    {
-      path: "/signup/organization",
-      name: "signup_organization",
-      component: () => import("@/view/auth/SignupOrganizationView.vue"),
-      meta: {
-        layout: DefaultLayout
-      }
-    },
-    {
-      path: "/signup/:invitation?",
-      name: "signup",
-      component: () => import("@/view/auth/SignupView.vue"),
-      meta: {
-        layout: AuthLayout
-      }
-    }
-  ]
-})
+  ],
+});
 
-export default router
+export default router;

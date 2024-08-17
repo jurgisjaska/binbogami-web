@@ -4,10 +4,13 @@ import NavigationBar from "@/component/navigation/NavigationBar.vue";
 
 <template>
     <div class="container">
-      <header class="mb-4">
+      <header class="mb-3">
         <NavigationBar />
       </header>
 
-      <slot/>
+      <div class="container">
+        <h6 class="mb-4">{{ $route.meta.title || "Dashboard" }}</h6>
+        <slot/>
+      </div>
     </div>
 </template>

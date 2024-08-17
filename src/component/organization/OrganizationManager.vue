@@ -41,20 +41,30 @@ const change = (o) => {
 <template>
   <div class="organization-manager px-3" v-if="currentOrganization">
     <div class="dropdown">
-      <button class="btn btn-outline-primary dropdown-toggle" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false">
-        {{ currentOrganization.name }}
-      </button>
-      <ul class="dropdown-menu">
-        <li v-for="organization in organizations" :key="organization.id">
-          <a
-            class="dropdown-item"
-            href="#"
-            :class="organization.name === currentOrganization.name?'disabled':''"
-            @click.prevent="change(organization)"
-          >{{ organization.name }}</a>
-        </li>
-      </ul>
+      <div class="btn-group" role="group">
+
+        <div class="btn-group">
+          <button class="btn btn-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+            {{ currentOrganization.name }}
+          </button>
+          <ul class="dropdown-menu">
+            <li v-for="organization in organizations" :key="organization.id">
+              <a
+                class="dropdown-item"
+                href="#"
+                :class="organization.name === currentOrganization.name?'disabled':''"
+                @click.prevent="change(organization)"
+              >{{ organization.name }}</a>
+            </li>
+          </ul>
+        </div>
+
+        <RouterLink :to="{name: 'organizations_invitations'}" class="btn btn-primary">
+          <i class="fa-regular fa-paper-plane"></i>
+        </RouterLink>
+
+      </div>
     </div>
   </div>
 </template>

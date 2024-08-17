@@ -30,7 +30,7 @@ const signout = () => {
 
       <ul class="navbar-nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" v-if="user">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+          <RouterLink :to="{name: 'dashboard'}" class="nav-link">Dashboard</RouterLink>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Books</a>
