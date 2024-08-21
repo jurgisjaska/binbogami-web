@@ -42,13 +42,22 @@ load(1);
 
         <ul class="list-group mb-3">
           <li class="list-group-item" v-for="invitation in invitations" :key="invitation.id">
-            {{ invitation.email }}
-            <span class="badge text-bg-success" v-if="invitation.openedAt">Read</span>
-            <span class="badge text-bg-success" v-if="invitation.deletedAt">Accepted</span>
-            <span
-              class="badge text-bg-danger"
-              v-if="moment(invitation.expiredAt).format('YYYY-MM-DD hh:mm:ss') < moment().format('YYYY-MM-DD hh:mm:ss') && invitation.deletedAt === null"
-            >Expired</span>
+            <div class="d-flex">
+              <div>
+                <p>{{ invitation.email }}</p>
+                <small>Expire at: {{ moment(invitation.expiredAt).format('YYYY-MM-DD hh:mm') }}</small>
+              </div>
+              <div class="ms-auto">
+                <span class="badge text-bg-success ms-2" v-if="invitation.openedAt">Read</span>
+                <span class="badge text-bg-success ms-2" v-if="invitation.deletedAt">Accepted</span>
+                <span
+                  class="badge text-bg-danger ms-2"
+                  v-if="moment(invitation.expiredAt).format('YYYY-MM-DD hh:mm:ss') < moment().format('YYYY-MM-DD hh:mm:ss') && invitation.deletedAt === null"
+                >Expired</span>
+              </div>
+            </div>
+
+
           </li>
         </ul>
 
