@@ -1,6 +1,5 @@
 <script setup>
 import api from "@/api.js";
-import EmailField from "@/component/form/EmailField.vue";
 import InvitationForm from "@/component/form/organization/InvitationForm.vue";
 import moment from "moment";
 import { ref } from "vue";
@@ -8,27 +7,21 @@ import { ref } from "vue";
 const invitations = ref(null);
 const error = ref(null);
 
-const now = moment().format("YYYY-MM-DD hh:mm:ss");
-console.log(now);
-
 // @todo verify the role of user!
 
-(() => {
+// Load invitations from the backend API.
+const load = () => {
   api.get("/v1/invitations")
     .then((r) => {
       invitations.value = r.data.data;
-
-      // invitation expired - expired
-      // invitation deleted - accepted
-      // invitation NOT expired and NOT deleted - active?
-      // invotation opened - ???
-
-      // expired at always a date
     })
     .catch((e) => {
       console.error(e.response?.data?.message || "Unexpected error");
     });
-})();
+};
+
+// Load in open.
+load();
 </script>
 
 <template>
@@ -37,7 +30,7 @@ console.log(now);
     <div class="row">
       <div class="col-6">
         <p>Invite new members by email to join your organization.</p>
-        <InvitationForm/>
+        <InvitationForm @refresh="load"/>
       </div>
       <div class="col-6">
         <p>Already invited</p>
