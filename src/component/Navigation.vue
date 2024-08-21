@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
 import OrganizationManager from "@/component/organization/OrganizationManager.vue";
 import { useOrganizationStore } from "@/store/organization.js";
@@ -25,7 +26,7 @@ const signout = () => {
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <RouterLink class="navbar-brand" to="/">Binbogami</RouterLink>
+        <RouterLink class="navbar-brand" to="/public">Binbogami</RouterLink>
       </div>
 
       <ul class="navbar-nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" v-if="user">

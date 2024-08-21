@@ -1,13 +1,19 @@
 <script setup>
 import api from "@/api.js";
 import EmailField from "@/component/form/EmailField.vue";
-import { defineEmits, ref } from "vue";
+import { defineEmits, defineProps, ref } from "vue";
 
 const email = ref(null);
 const error = ref(null);
 const success = ref(null);
 
 const emit = defineEmits(["refresh"]);
+defineProps({
+  membership: {
+    type: Object,
+    required: true,
+  },
+});
 
 const invite = () => {
   const data = {
@@ -22,6 +28,7 @@ const invite = () => {
       emit("refresh", "invitations updated");
     })
     .catch(e => {
+      success.value = null;
       error.value = e.response?.data?.message || "Unexpected error";
     });
 };
@@ -32,9 +39,13 @@ const invite = () => {
     <div class="alert alert-danger" v-if="error">{{ error }}</div>
     <div class="alert alert-success" v-if="success">{{ success }}</div>
 
-    <EmailField v-model="email" />
+    <div class="alert alert-info" v-if="membership.role !== 4 && membership.role !== 3">
+      Only organization owners and administrators allowed to invite new members.
+    </div>
 
-    <button class="btn btn-primary" type="submit">
+    <EmailField v-model="email" :disabled="membership.role !== 4 && membership.role !== 3" />
+
+    <button class="btn btn-primary" type="submit" :disabled="membership.role !== 4 && membership.role !== 3">
       <i class="fa-solid fa-plus"></i> Invite
     </button>
   </form>

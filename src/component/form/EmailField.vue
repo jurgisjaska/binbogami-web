@@ -1,6 +1,10 @@
 <script setup>
 defineProps({
   modelValue: String,
+  disabled: {
+    type: Boolean,
+    required: false,
+  },
 });
 </script>
 
@@ -16,6 +20,7 @@ defineProps({
         placeholder="Email"
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
+        :disabled="disabled"
       >
     </div>
   </div>

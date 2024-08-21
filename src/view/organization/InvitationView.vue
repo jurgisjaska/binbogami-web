@@ -9,11 +9,13 @@ const invitations = ref(null);
 const metadata = ref({ pages: 0 });
 const error = ref(null);
 
-// @todo verify the role of user!
+const membership = ref({role: 0});
+
+// @todo get user role in the organization
+// that can be done from membership
 
 // Load invitations from the backend API
 const load = (page) => {
-  console.log(page)
   api
     .get("/v1/invitations", {params: {page}})
     .then((r) => {
@@ -25,6 +27,18 @@ const load = (page) => {
     });
 };
 
+(() => {
+  api
+    .get("/v1/members")
+    .then((r) => {
+      membership.value = r.data.data;
+      console.log(r.data.data);
+    })
+    .catch((e) => {
+      console.error(e.response?.data?.message || "Unexpected error");
+    });
+})();
+
 // Load on open
 load(1);
 </script>
@@ -35,7 +49,7 @@ load(1);
     <div class="row">
       <div class="col-6">
         <p>Invite new members by email to join your organization.</p>
-        <InvitationForm @refresh="load(1)" />
+        <InvitationForm @refresh="load(1)" :membership="membership" />
       </div>
       <div class="col-6">
         <p>Already invited</p>
@@ -56,8 +70,6 @@ load(1);
                 >Expired</span>
               </div>
             </div>
-
-
           </li>
         </ul>
 
