@@ -1,27 +1,32 @@
 <script setup>
 import api from "@/api.js";
 import InvitationForm from "@/component/form/organization/InvitationForm.vue";
+import Pagination from "@/component/Pagination.vue";
 import moment from "moment";
 import { ref } from "vue";
 
 const invitations = ref(null);
+const metadata = ref({ pages: 0 });
 const error = ref(null);
 
 // @todo verify the role of user!
 
-// Load invitations from the backend API.
-const load = () => {
-  api.get("/v1/invitations")
+// Load invitations from the backend API
+const load = (page) => {
+  console.log(page)
+  api
+    .get("/v1/invitations", {params: {page}})
     .then((r) => {
       invitations.value = r.data.data;
+      metadata.value = r.data.metadata;
     })
     .catch((e) => {
       console.error(e.response?.data?.message || "Unexpected error");
     });
 };
 
-// Load in open.
-load();
+// Load on open
+load(1);
 </script>
 
 <template>
@@ -30,12 +35,12 @@ load();
     <div class="row">
       <div class="col-6">
         <p>Invite new members by email to join your organization.</p>
-        <InvitationForm @refresh="load"/>
+        <InvitationForm @refresh="load(1)" />
       </div>
       <div class="col-6">
         <p>Already invited</p>
 
-        <ul class="list-group">
+        <ul class="list-group mb-3">
           <li class="list-group-item" v-for="invitation in invitations" :key="invitation.id">
             {{ invitation.email }}
             <span class="badge text-bg-success" v-if="invitation.openedAt">Read</span>
@@ -47,6 +52,7 @@ load();
           </li>
         </ul>
 
+        <Pagination :metadata="metadata" @change-page="load"/>
 
       </div>
     </div>

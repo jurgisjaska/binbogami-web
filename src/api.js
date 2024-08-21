@@ -21,7 +21,6 @@ api.interceptors.request.use(
 
     // organization header should always be added to v1 endpoints
     const organization = JSON.parse(localStorage.getItem("binbogami_organization") || "[]");
-    console.log(organization);
     if (organization && config.url.includes("v1/")) {
       config.headers.organization = organization.id || null;
     }
