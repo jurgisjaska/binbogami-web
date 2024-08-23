@@ -47,7 +47,7 @@ const signout = () => {
         </li>
       </ul>
 
-      <OrganizationManager v-if="user"/>
+      <OrganizationManager v-if="user" />
 
       <div class="flex-shrink-0 dropdown" v-if="user">
         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle show"
@@ -58,11 +58,15 @@ const signout = () => {
         <ul class="dropdown-menu text-small shadow"
             style=""
             data-popper-placement="bottom-end">
-          <li><a class="dropdown-item" href="#">Settings</a></li>
           <li>
-            <a class="dropdown-item" href="#">
-              <i class="fa-regular fa-user"></i> Profile
-            </a>
+            <RouterLink class="dropdown-item" :to="{name: 'users_profile'}">
+              <i class="fa-solid fa-user"></i> Profile
+            </RouterLink>
+          </li>
+          <li>
+            <RouterLink class="dropdown-item" :to="{name: 'users_settings'}" >
+              <i class="fa-solid fa-gear"></i> Settings
+            </RouterLink>
           </li>
           <li>
             <hr class="dropdown-divider">

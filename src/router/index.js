@@ -5,7 +5,8 @@ import { createRouter, createWebHistory } from "vue-router";
 
 // separated routes
 import authRoutes from "./auth.js";
-import organizationRoutes from "./organization.js"
+import organizationRoutes from "./organization.js";
+import userRoutes from "./user.js";
 
 // @todo add before checks for the token
 
@@ -18,11 +19,12 @@ const router = createRouter({
       component: HomeView,
       meta: {
         layout: DefaultLayout,
-        title: "Home"
+        title: "Home",
       },
     },
     ...authRoutes,
     ...organizationRoutes,
+    ...userRoutes,
     {
       path: "/about",
       name: "about",
