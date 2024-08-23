@@ -34,7 +34,7 @@ const signout = () => {
           <RouterLink :to="{name: 'dashboard'}" class="nav-link">Dashboard</RouterLink>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="#">Books</a>
+          <RouterLink class="nav-link" :to="{name: 'books'}">Books</RouterLink>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Locations</a>
