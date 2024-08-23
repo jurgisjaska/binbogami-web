@@ -69,7 +69,7 @@ const signout = () => {
           </li>
           <li>
             <a href="#" class="dropdown-item" @click.prevent="signout" v-if="user">
-              <i class="fa-solid fa-right-from-bracket"></i> Sign out
+              <i class="fa-solid fa-right-from-bracket text-danger"></i> Sign Out
             </a>
           </li>
         </ul>
@@ -77,10 +77,10 @@ const signout = () => {
 
       <div class="text-end" v-if="!user">
         <RouterLink class="btn btn-primary me-2" :to="{name: 'signin'}" v-if="!user">
-          Sign in
+          Sign In
         </RouterLink>
         <RouterLink class="btn btn-secondary" :to="{name: 'signup', params: {invitation: ''}}" v-if="!user">
-          Sign up
+          Sign Up
         </RouterLink>
       </div>
 

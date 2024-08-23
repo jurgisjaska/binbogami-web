@@ -5,6 +5,7 @@ import { createRouter, createWebHistory } from "vue-router";
 
 // separated routes
 import authRoutes from "./auth.js";
+import organizationRoutes from "./organization.js"
 
 // @todo add before checks for the token
 
@@ -21,6 +22,7 @@ const router = createRouter({
       },
     },
     ...authRoutes,
+    ...organizationRoutes,
     {
       path: "/about",
       name: "about",
@@ -37,15 +39,6 @@ const router = createRouter({
       meta: {
         layout: DashboardLayout,
         title: "Dashboard",
-      },
-    },
-    {
-      path: "/organizations/invitations",
-      name: "organizations_invitations",
-      component: () => import("@/view/organization/InvitationView.vue"),
-      meta: {
-        layout: DashboardLayout,
-        title: "Invitations",
       },
     },
   ],

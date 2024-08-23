@@ -19,6 +19,7 @@ defineProps({
         :to="{name: 'forgot-password'}"
         class="forgot-password ms-auto"
         v-if="forgot"
+        tabindex="-1"
       >
         Forgot password?
       </RouterLink>

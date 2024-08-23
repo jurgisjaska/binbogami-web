@@ -57,6 +57,14 @@ const change = (o) => {
                 @click.prevent="change(organization)"
               >{{ organization.name }}</a>
             </li>
+            <li>
+              <hr class="dropdown-divider">
+            </li>
+            <li>
+              <RouterLink class="dropdown-item" :to="{name: 'organizations_create'}">
+                <i class="fa-solid fa-plus"></i> Create Organization
+              </RouterLink>
+            </li>
           </ul>
         </div>
 
