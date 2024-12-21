@@ -1,22 +1,35 @@
 <script setup>
+import api from "@/api.js";
+import BookList from "@/component/book/BookList.vue";
 import { ref } from "vue";
 
-const books = ref([]);
+const activeBooks = ref([]);
 const closedBooks = ref([]);
 
 (() => {
-  // load books
-  // load closed books
+  api
+    .get("/v1/books")
+    .then((r) => {
+      r.data.data.forEach((book) => {
+        console.log(book);
 
-  // do i have an API for this?
+        if (book.closedAt !== null) {
+          closedBooks.value.push(book);
+        } else {
+          activeBooks.value.push(book);
+        }
+      });
+    })
+    .catch((e) => {
+      console.error(e.response?.data?.message || "Unexpected error");
+    });
 })();
-
 </script>
 
 <template>
   <div class="list-view">
 
-    <RouterLink class="btn btn-primary mb-3" :to="{name: 'books_create'}">
+    <RouterLink class="btn btn-primary mb-3" :to="{name: 'book', params: {book: 'create'}}">
       <i class="fa-solid fa-plus"></i> Create Book
     </RouterLink>
 
@@ -30,7 +43,9 @@ const closedBooks = ref([]);
         </h2>
         <div id="active-books" class="accordion-collapse collapse show" data-bs-parent="#books">
           <div class="accordion-body">
-            // books
+
+            <BookList :books="activeBooks" />
+
           </div>
         </div>
       </div>
@@ -43,7 +58,9 @@ const closedBooks = ref([]);
         </h2>
         <div id="closed-books" class="accordion-collapse collapse" data-bs-parent="#books">
           <div class="accordion-body">
-            // closed books
+
+            <BookList :books="closedBooks" />
+
           </div>
         </div>
       </div>

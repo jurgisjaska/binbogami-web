@@ -11,12 +11,12 @@ export default [
     },
   },
   {
-    path: "/books/create",
-    name: "books_create",
-    component: () => import("@/view/book/CreateView.vue"),
+    path: "/books/:book",
+    name: "book",
+    component: () => import("@/view/book/BookView.vue"),
     meta: {
       layout: DashboardLayout,
-      title: "Create new Book",
+      title: "Book",
     },
   },
 ];

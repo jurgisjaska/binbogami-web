@@ -32,7 +32,6 @@ const load = (page) => {
     .get("/v1/members")
     .then((r) => {
       membership.value = r.data.data;
-      console.log(r.data.data);
     })
     .catch((e) => {
       console.error(e.response?.data?.message || "Unexpected error");
