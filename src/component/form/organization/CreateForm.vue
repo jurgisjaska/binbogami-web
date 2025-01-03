@@ -1,7 +1,7 @@
 <script setup>
 import api from "@/api.js";
 import FormField from "@/component/form/FormField.vue";
-import TextField from "@/component/form/TextField.vue";
+import TextField from "@/component/form/field/TextField.vue";
 import { useOrganizationStore } from "@/store/organization.js";
 import { ref } from "vue";
 import { useRouter } from "vue-router";

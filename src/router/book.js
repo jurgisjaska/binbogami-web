@@ -4,7 +4,7 @@ export default [
   {
     path: "/books",
     name: "books",
-    component: () => import("@/view/book/ListView.vue"),
+    component: () => import("@/view/book/BookListView.vue"),
     meta: {
       layout: DashboardLayout,
       title: "Books",
