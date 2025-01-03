@@ -11,6 +11,7 @@ defineProps({
 
 <template>
   <ul class="list-group book-list">
+    <li class="list-group-item list-group-item-action" v-if="books.length === 0">No books found</li>
     <RouterLink
       class="list-group-item list-group-item-action"
       v-for="book in books"

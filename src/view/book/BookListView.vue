@@ -43,9 +43,7 @@ const closedBooks = ref([]);
         </h2>
         <div id="active-books" class="accordion-collapse collapse show" data-bs-parent="#books">
           <div class="accordion-body">
-
             <BookList :books="activeBooks" />
-
           </div>
         </div>
       </div>
@@ -58,9 +56,7 @@ const closedBooks = ref([]);
         </h2>
         <div id="closed-books" class="accordion-collapse collapse" data-bs-parent="#books">
           <div class="accordion-body">
-
             <BookList :books="closedBooks" />
-
           </div>
         </div>
       </div>
