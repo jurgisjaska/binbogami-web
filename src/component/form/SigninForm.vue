@@ -2,7 +2,6 @@
 import api from "@/api.js";
 import EmailField from "@/component/form/EmailField.vue";
 import PasswordField from "@/component/form/PasswordField.vue";
-import { useOrganizationStore } from "@/store/organization.js";
 import { useTokenStore } from "@/store/token.js";
 import { useUserStore } from "@/store/user.js";
 import { ref } from "vue";
@@ -10,7 +9,6 @@ import { RouterLink, useRouter } from "vue-router";
 
 const tokenStore = useTokenStore();
 const userStore = useUserStore();
-const organizationStore = useOrganizationStore();
 
 const router = useRouter();
 
@@ -30,22 +28,9 @@ const signin = () => {
     .then((r) => {
       const token = r.data.data.token;
       const user = r.data.data.user;
-      const organization = r.data.data.organization;
-      const member = r.data.data.member;
 
       tokenStore.set(token);
       userStore.set(user);
-      organizationStore.set(organization);
-
-      if (!member) {
-        router.push({ name: "signup_organization" });
-        return;
-      }
-
-      if (member && !organization) {
-        router.push({ name: "signin_organization" });
-        return;
-      }
 
       router.push({ name: "dashboard" });
     })

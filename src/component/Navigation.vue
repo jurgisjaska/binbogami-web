@@ -1,7 +1,5 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import OrganizationManager from "@/component/organization/OrganizationManager.vue";
-import { useOrganizationStore } from "@/store/organization.js";
 import { useTokenStore } from "@/store/token.js";
 import { useUserStore } from "@/store/user.js";
 import { computed } from "vue";
@@ -9,14 +7,12 @@ import { RouterLink, useRouter } from "vue-router";
 
 const userStore = useUserStore();
 const tokenStore = useTokenStore();
-const organizationStore = useOrganizationStore();
 const router = useRouter();
 const user = computed(() => userStore.get);
 
 const signout = () => {
   tokenStore.clear();
   userStore.clear();
-  organizationStore.clear();
 
   router.push({ name: "home" });
 };
@@ -46,8 +42,6 @@ const signout = () => {
           <a class="nav-link" href="#">Entries</a>
         </li>
       </ul>
-
-      <OrganizationManager v-if="user" />
 
       <div class="flex-shrink-0 dropdown" v-if="user">
         <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle show"

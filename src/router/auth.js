@@ -11,14 +11,6 @@ export default [
     },
   },
   {
-    path: "/signin/organization",
-    name: "signin_organization",
-    component: () => import("@/view/auth/SigninOrganizationView.vue"),
-    meta: {
-      layout: DefaultLayout,
-    },
-  },
-  {
     path: "/forgot-password",
     name: "forgot-password",
     component: () => import("@/view/auth/ForgotPasswordView.vue"),
@@ -32,14 +24,6 @@ export default [
     component: () => import("@/view/auth/ResetPasswordView.vue"),
     meta: {
       layout: AuthLayout,
-    },
-  },
-  {
-    path: "/signup/organization",
-    name: "signup_organization",
-    component: () => import("@/view/auth/SignupOrganizationView.vue"),
-    meta: {
-      layout: DefaultLayout,
     },
   },
   {

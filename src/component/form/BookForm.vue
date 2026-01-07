@@ -1,6 +1,5 @@
 <script setup>
 import api from "@/api.js";
-import OrganizationSelector from "@/component/form/field/OrganizationSelector.vue";
 import TextField from "@/component/form/field/TextField.vue";
 import FormField from "@/component/form/FormField.vue";
 import { ref } from "vue";
@@ -10,7 +9,6 @@ const route = useRoute();
 
 const name = ref(null);
 const description = ref(null);
-const organization = ref(null);
 const error = ref(null);
 
 const submit = () => {
@@ -24,7 +22,6 @@ const submit = () => {
     .then(r => {
       name.value = r.data.data.name;
       description.value = r.data.data.description;
-      organization.value = r.data.data.organizationId;
     })
     .catch(e => {
       error.value = e.response?.data?.message || "Unexpected error";
@@ -41,9 +38,7 @@ const submit = () => {
         <FormField type="text" label="Name" placeholder="Book name" v-model="name" />
         <TextField label="Description" placeholder="Book description" v-model="description" />
       </div>
-      <div class="col-6">
-        <OrganizationSelector v-model="organization" />
-      </div>
+      <div class="col-6"></div>
     </div>
   </form>
 </template>

@@ -3,7 +3,6 @@ import api from "@/api.js";
 import EmailField from "@/component/form/EmailField.vue";
 import FormField from "@/component/form/FormField.vue";
 import PasswordField from "@/component/form/PasswordField.vue";
-import { useOrganizationStore } from "@/store/organization.js";
 import { useTokenStore } from "@/store/token.js";
 import { useUserStore } from "@/store/user.js";
 import { ref } from "vue";
@@ -14,7 +13,6 @@ const route = useRoute();
 
 const tokenStore = useTokenStore();
 const userStore = useUserStore();
-const organizationStore = useOrganizationStore();
 
 const invitation = ref(null);
 
@@ -59,9 +57,8 @@ const signup = () => {
 
       userStore.set(data.user);
       tokenStore.set(data.token);
-      organizationStore.set(data.organization);
 
-      router.push({ name: data.member ? "dashboard" : "signup_organization" });
+      router.push("dashboard");
     })
     .catch((e) => {
       error.value = e.response?.data?.message || "Unexpected error";
@@ -73,12 +70,12 @@ const signup = () => {
   <div class="card mb-4" v-if="invitation">
     <header class="card-header">
       <div class="card-header-title">
-        {{ invitation.organization.name }}
+        [ NAME ]
       </div>
     </header>
     <div class="card-content">
       <div class="content">
-        {{ invitation.organization.description }}
+        [ DESCRIPTION ]
       </div>
     </div>
     <footer class="card-footer has-text-left">

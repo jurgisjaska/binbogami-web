@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard">
 
-    // dashboard with all kind of statistics of the organization
+    // dashboard with all kind of statistics
   </div>
 </template>

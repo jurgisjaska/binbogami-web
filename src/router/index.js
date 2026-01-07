@@ -5,7 +5,6 @@ import { createRouter, createWebHistory } from "vue-router";
 
 // separated routes
 import authRoutes from "./auth.js";
-import organizationRoutes from "./organization.js";
 import userRoutes from "./user.js";
 import bookRoutes from "./book.js";
 
@@ -24,7 +23,6 @@ const router = createRouter({
       },
     },
     ...authRoutes,
-    ...organizationRoutes,
     ...userRoutes,
     ...bookRoutes,
     {
