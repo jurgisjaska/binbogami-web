@@ -42,26 +42,15 @@ const signin = () => {
 
 <template>
   <form class="signin-form" @submit.prevent="signin">
+    <h2 class="text-center h2 mb-4">Sign In to your account</h2>
 
     <div class="alert alert-danger" v-if="error">{{ error }}</div>
 
     <EmailField v-model="email" />
     <PasswordField v-model="password" :forgot="true" />
 
-    <div class="d-flex justify-content-between">
-      <button type="submit" class="btn btn-primary mt-6">Sign In</button>
-
-      <button class="btn btn-secondary">
-        <i class="fa-brands fa-google"></i>
-      </button>
+    <div class="form-footer">
+      <button type="submit" class="btn btn-primary w-100">Sign In</button>
     </div>
-
-    <hr>
-
-    <div>
-      Dont have an account?
-      <RouterLink class="is-link" :to="{name: 'signup', params: {invitation: ''}}">Sign Up</RouterLink>
-    </div>
-
   </form>
 </template>

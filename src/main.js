@@ -2,6 +2,11 @@
 import "bootstrap/scss/bootstrap.scss"
 import "bootstrap/dist/js/bootstrap.bundle.js"
 
+// tabler
+import "@tabler/core/scss/tabler.scss"
+import "@tabler/core/js/tabler.js"
+import "@tabler/core/js/tabler-theme.js"
+
 // binbogami
 import "@/asset/main.scss"
 

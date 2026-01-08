@@ -12,7 +12,7 @@ defineProps({
   <div class="field mb-3">
     <label class="form-label">Email</label>
 
-    <div class="input-group">
+    <div class="input-group input-group-flat">
       <span class="input-group-text"><i class="fas fa-envelope"></i></span>
       <input
         type="email"

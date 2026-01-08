@@ -17,14 +17,14 @@ defineProps({
       <span>Password</span>
       <RouterLink
         :to="{name: 'forgot-password'}"
-        class="forgot-password ms-auto"
+        class="forgot-password "
         v-if="forgot"
         tabindex="-1"
       >
         Forgot password?
       </RouterLink>
     </label>
-    <div class="input-group">
+    <div class="input-group input-group-flat">
       <span class="input-group-text"><i class="fas fa-key"></i></span>
       <input type="password" class="form-control" placeholder="Password"
              :value="modelValue"
@@ -33,9 +33,3 @@ defineProps({
     </div>
   </div>
 </template>
-
-<style scoped>
-.forgot-password {
-  font-weight: normal;
-}
-</style>

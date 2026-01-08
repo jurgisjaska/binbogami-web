@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@popperjs/core": "^2.11.8",
+    "@tabler/core": "^1.4.0",
     "axios": "^1.6.7",
     "bootstrap": "^5.3.3",
     "dotenv": "^16.4.5",
