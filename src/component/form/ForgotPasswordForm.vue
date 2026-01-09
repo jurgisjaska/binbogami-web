@@ -37,20 +37,15 @@ const forgot = () => {
     <div class="notification is-danger" v-if="error">{{ error }}</div>
     <div class="notification is-success" v-if="success">{{ success }}</div>
 
-    <p class="mb-6">
+    <p class="text-secondary mb-4">
       Please enter your registered email address
       below and we'll send you instructions on how to reset your password.
     </p>
 
     <EmailField v-model="email" />
 
-    <button type="submit" class="btn btn-primary mt-6">Send</button>
-
-    <hr>
-
-    <div>
-      Dont have an account?
-      <RouterLink class="is-link" :to="{name: 'signup', params: {invitation: ''}}">Sign Up</RouterLink>
+    <div class="form-footer">
+      <button type="submit" class="btn btn-primary w-100">Send</button>
     </div>
 
   </form>
