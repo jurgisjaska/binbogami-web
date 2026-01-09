@@ -18,7 +18,7 @@ const error = ref(null);
 // verify that password reset token is still valid
 (() => {
   const id = route.params.id ?? null;
-  api.get("/p/reset-password/" + id)
+  api.get("/auth/reset-password/" + id)
     .then(r => {
       token.value = r.data.data.id;
     })

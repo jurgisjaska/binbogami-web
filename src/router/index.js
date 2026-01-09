@@ -7,6 +7,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import authRoutes from "./auth.js";
 import userRoutes from "./user.js";
 import bookRoutes from "./book.js";
+import errorRoutes from "./error.js"
 
 // @todo add before checks for the token
 
@@ -43,6 +44,7 @@ const router = createRouter({
         title: "Dashboard",
       },
     },
+      ...errorRoutes,
   ],
 });
 

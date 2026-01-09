@@ -1,5 +1,4 @@
 import AuthLayout from "@/layout/AuthLayout.vue";
-import DefaultLayout from "@/layout/DefaultLayout.vue";
 
 export default [
   {
