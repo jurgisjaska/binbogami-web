@@ -1,6 +1,5 @@
 // bootstrap
 import "bootstrap/scss/bootstrap.scss"
-import "bootstrap/dist/js/bootstrap.bundle.js"
 
 // tabler
 import "@tabler/core/scss/tabler.scss"
