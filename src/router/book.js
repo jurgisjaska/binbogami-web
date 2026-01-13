@@ -4,10 +4,11 @@ export default [
   {
     path: "/books",
     name: "books",
-    component: () => import("@/view/book/BookListView.vue"),
+    component: () => import("@/view/book/BooksView.vue"),
     meta: {
       layout: DashboardLayout,
       title: "Books",
+      navigation: "books",
     },
   },
   {
@@ -17,6 +18,7 @@ export default [
     meta: {
       layout: DashboardLayout,
       title: "Book",
+      navigation: "books",
     },
   },
 ];

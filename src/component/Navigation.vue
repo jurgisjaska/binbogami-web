@@ -26,19 +26,19 @@ const signout = () => {
       </div>
 
       <ul class="navbar-nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0" v-if="user">
-        <li class="nav-item">
-          <RouterLink :to="{name: 'dashboard'}" class="nav-link">Dashboard</RouterLink>
+        <li class="nav-item" :class="$route.name === 'dashboard' ? 'active' : ''">
+          <RouterLink class="nav-link" :to="{name: 'dashboard'}" >Dashboard</RouterLink>
         </li>
-        <li class="nav-item">
-          <RouterLink class="nav-link" :to="{name: 'books'}">Books</RouterLink>
+        <li class="nav-item" :class="$route.meta.navigation === 'books' ? 'active' : ''">
+          <RouterLink class="nav-link" :to="{name: 'books'}" >Books</RouterLink>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" :class="$route.meta.navigation === 'locations' ? 'active' : ''">
           <a class="nav-link" href="#">Locations</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" :class="$route.meta.navigation === 'categories' ? 'active' : ''">
           <a class="nav-link" href="#">Categories</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item" :class="$route.meta.navigation === 'entries' ? 'active' : ''">
           <a class="nav-link" href="#">Entries</a>
         </li>
       </ul>
