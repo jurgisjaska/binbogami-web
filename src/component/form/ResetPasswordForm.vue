@@ -1,7 +1,7 @@
 <script setup>
 
 import api from "@/api.js";
-import FormField from "@/component/form/FormField.vue";
+import DefaultField from "@/component/form/field/DefaultField.vue";
 import PasswordField from "@/component/form/PasswordField.vue";
 import { ref } from "vue";
 import { RouterLink, useRoute, useRouter } from "vue-router";
@@ -58,7 +58,7 @@ const reset = () => {
     </p>
 
     <PasswordField v-model="password" />
-    <FormField label="Repeated Password" type="password" v-model="repeatedPassword" />
+    <DefaultField label="Repeated Password" type="password" v-model="repeatedPassword" />
 
     <button type="submit" class="btn btn-primary mt-6">Reset Password</button>
 

@@ -1,7 +1,7 @@
 <script setup>
 import api from "@/api.js";
 import EmailField from "@/component/form/EmailField.vue";
-import FormField from "@/component/form/FormField.vue";
+import DefaultField from "@/component/form/field/DefaultField.vue";
 import PasswordField from "@/component/form/PasswordField.vue";
 import { useTokenStore } from "@/store/token.js";
 import { useUserStore } from "@/store/user.js";
@@ -91,9 +91,9 @@ const signup = () => {
   <form class="signup-form" @submit.prevent="signup">
     <EmailField v-model="email" />
     <PasswordField v-model="password" />
-    <FormField label="Repeated Password" type="password" v-model="repeatedPassword" />
-    <FormField label="Name" type="text" v-model="name" />
-    <FormField label="Surname" type="text" v-model="surname" />
+    <DefaultField label="Repeated Password" type="password" v-model="repeatedPassword" />
+    <DefaultField label="Name" type="text" v-model="name" />
+    <DefaultField label="Surname" type="text" v-model="surname" />
 
     <div class="form-footer">
       <button type="submit" class="btn btn-primary w-100">Sign Up</button>
