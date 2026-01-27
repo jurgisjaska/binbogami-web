@@ -1,5 +1,6 @@
 <script setup>
 import {defineProps} from "vue";
+import moment from "moment";
 
 defineProps({
   books: {
@@ -7,6 +8,11 @@ defineProps({
     required: true,
   },
 });
+
+const formatDate = (dateString) => {
+  if (!dateString) return "";
+  return moment(dateString).format("YYYY-MM-DD HH:mm");
+};
 </script>
 
 <template>
@@ -19,9 +25,9 @@ defineProps({
     <td>
       <RouterLink :to="{name: 'book', params: {book: book.id}}">{{ book.name }}</RouterLink>
     </td>
-    <td>{{ book.description }}</td>
+    <td class="text-truncate description">{{ book.description }}</td>
     <td>{{ book.createdBy }}</td>
-    <td>{{ book.createdAt }}</td>
+    <td>{{ formatDate(book.createdAt) }}</td>
     <td class="text-end">
       <div class="btn-list flex-nowrap">
         <RouterLink class="btn btn-1" :to="{name: 'book', params: {book: book.id}}" aria-label="Edit book">
@@ -38,3 +44,9 @@ defineProps({
   </tr>
   </tbody>
 </template>
+
+<style scoped>
+td.description{
+  max-width: 200px;
+}
+</style>

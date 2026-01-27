@@ -6,11 +6,19 @@ import Pagination from "@/component/Pagination.vue";
 
 const active = ref([]);
 const activeMetadata = ref([]);
+
 const closed = ref([]);
+
+const load = (params) => {};
 
 (() => {
   api
-      .get("/v1/books?status=active")
+      .get("/v1/books", {
+        params: {
+          status: "active",
+          page: 1,
+        },
+      })
       .then((r) => {
         active.value = r.data.data;
         activeMetadata.value = r.data.metadata;
@@ -44,7 +52,7 @@ const closed = ref([]);
                 <a class="dropdown-item" href="#">Third action</a>
               </div>
             </div>
-            <a href="#" class="btn btn-primary"><i class="fa fa-plus me-2"></i> Create Book</a>
+            <RouterLink href="#" class="btn btn-primary" :to="{name: 'book', params: {book: null}}"><i class="fa fa-plus me-2"></i> Create Book</RouterLink>
           </div>
         </div>
       </div>
