@@ -1,7 +1,7 @@
 import DashboardLayout from "@/layout/DashboardLayout.vue";
 import DefaultLayout from "@/layout/DefaultLayout.vue";
 import HomeView from "@/view/HomeView.vue";
-import { createRouter, createWebHistory } from "vue-router";
+import {createRouter, createWebHistory} from "vue-router";
 
 // separated routes
 import authRoutes from "./auth.js";
@@ -23,9 +23,7 @@ const router = createRouter({
         title: "Home",
       },
     },
-    ...authRoutes,
-    ...userRoutes,
-    ...bookRoutes,
+
     {
       path: "/about",
       name: "about",
@@ -44,7 +42,10 @@ const router = createRouter({
         title: "Dashboard",
       },
     },
-      ...errorRoutes,
+    ...authRoutes,
+    ...userRoutes,
+    ...bookRoutes,
+    ...errorRoutes,
   ],
 });
 

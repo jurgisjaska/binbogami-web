@@ -16,6 +16,13 @@ const signout = () => {
 
   router.push({name: "home"});
 };
+
+(() => {
+  if(!user.value) {
+    router.push({name: "signin"});
+  }
+})();
+
 </script>
 
 <template>
