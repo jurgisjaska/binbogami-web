@@ -5,27 +5,39 @@ import {ref} from "vue";
 import Pagination from "@/component/Pagination.vue";
 
 const active = ref([]);
-const activeMetadata = ref([]);
+const activeMetadata = ref({status: "active", page: 1});
 
-const closed = ref([]);
+// const closed = ref([]);
+// const closedMetadata = ref([]);
 
-const load = (params) => {};
-
-(() => {
+const load = (books, metadata) => {
   api
       .get("/v1/books", {
-        params: {
-          status: "active",
-          page: 1,
-        },
+        params: metadata.value,
       })
       .then((r) => {
-        active.value = r.data.data;
-        activeMetadata.value = r.data.metadata;
+        books.value = r.data.data;
+        metadata.value = r.data.metadata;
       })
       .catch((e) => {
         console.error(e.response?.data?.message || "Unexpected error");
       });
+};
+
+// @todo working sorting
+// @todo working search
+
+const onChangePage = (books, metadata, n) => {
+  metadata.value.page = n;
+  load(books, metadata);
+};
+
+const onActivePageChange = (n) => {
+  onChangePage(active, activeMetadata, n);
+};
+
+(() => {
+  load(active, activeMetadata);
 })();
 </script>
 
@@ -87,7 +99,7 @@ const load = (params) => {};
           <p class="m-0 text-secondary"></p>
         </div>
         <div class="col-auto">
-          <Pagination :metadata="activeMetadata"></Pagination>
+          <Pagination :metadata="activeMetadata" @changePage="onActivePageChange"></Pagination>
         </div>
       </div>
     </div>
