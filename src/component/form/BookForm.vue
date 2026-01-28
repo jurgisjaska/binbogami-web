@@ -11,9 +11,10 @@ const name = ref(null);
 const description = ref(null);
 const error = ref(null);
 const success = ref(null);
+
 let id = route.params.book ?? null;
 
-const submit = () => {
+const onSubmit = () => {
   error.value = null;
   success.value = null;
 
@@ -26,7 +27,7 @@ const submit = () => {
     "description": description.value
   })
       .then((r) => {
-        if(r.data.data.id) {
+        if (r.data.data.id) {
           error.value = null;
           success.value = "Book " + (id ? "updated" : "created") + " successfully!";
           id = r.data.data.id;
@@ -37,6 +38,11 @@ const submit = () => {
       .catch((e) => {
         error.value = e.response?.data?.message || "Unexpected error";
       });
+};
+
+const onReset = () => {
+  success.value = null;
+  id = null;
 };
 
 const load = (id) => {
@@ -51,22 +57,23 @@ const load = (id) => {
       });
 };
 
-(() => {
-  if (id) load(id);
-})();
+if (id) load(id);
 </script>
 
 <template>
-  <form class="book-form" @submit.prevent="submit">
+  <form class="book-form" @submit.prevent="onSubmit">
     <div class="alert alert-danger" v-if="error">
       <div class="alert-icon"><i class="fa fa-exclamation-circle"></i></div>
       {{ error }}
     </div>
+
     <div class="alert alert-success" v-if="success">
       <div class="alert-icon"><i class="fa fa-check"></i></div>
       {{ success }}
       <RouterLink :to="{name: 'books'}">Return to the books</RouterLink>
+      <a href="#" @click.prevent="onReset" class="ms-2">Create a new Book</a>
     </div>
+
     <HorizontalField type="text" label="Name" placeholder="Book name" v-model="name" :required="true"/>
     <TextField label="Description" placeholder="Book description" v-model="description"/>
 
