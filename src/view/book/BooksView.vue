@@ -1,11 +1,14 @@
 <script setup>
 import api from "@/api.js";
 import BookList from "@/component/book/BookList.vue";
-import {ref} from "vue";
+import {ref, watch} from "vue";
 import Pagination from "@/component/Pagination.vue";
 
 const active = ref([]);
 const activeMetadata = ref({status: "active", page: 1});
+
+const search = ref("");
+let timeout;
 
 // const closed = ref([]);
 // const closedMetadata = ref([]);
@@ -29,6 +32,8 @@ const load = (books, metadata) => {
 
 const onChangePage = (books, metadata, n) => {
   metadata.value.page = n;
+  activeMetadata.value.query = search;
+
   load(books, metadata);
 };
 
@@ -36,9 +41,19 @@ const onActivePageChange = (n) => {
   onChangePage(active, activeMetadata, n);
 };
 
-(() => {
-  load(active, activeMetadata);
-})();
+// @todo move search to separate component
+watch(search, (q) => {
+  clearTimeout(timeout);
+
+  timeout = setTimeout(() => {
+    activeMetadata.value.query = q;
+    activeMetadata.value.page = 1;
+    load(active, activeMetadata);
+  }, 500);
+});
+
+// Load books on page open.
+load(active, activeMetadata);
 </script>
 
 <template>
@@ -53,7 +68,13 @@ const onActivePageChange = (n) => {
           <div class="ms-auto d-flex flex-wrap btn-list">
             <div class="input-group input-group-flat w-auto">
               <span class="input-group-text"><i class="fa fa-magnifying-glass"></i></span>
-              <input id="advanced-table-search" type="text" class="form-control" autocomplete="off">
+              <input
+                  type="text"
+                  class="form-control"
+                  autocomplete="off"
+                  v-model="search"
+                  placeholder="Search..."
+              />
             </div>
 
             <div class="dropdown">
@@ -64,7 +85,9 @@ const onActivePageChange = (n) => {
                 <a class="dropdown-item" href="#">Third action</a>
               </div>
             </div>
-            <RouterLink href="#" class="btn btn-primary" :to="{name: 'book', params: {book: null}}"><i class="fa fa-plus me-2"></i> Create Book</RouterLink>
+            <RouterLink href="#" class="btn btn-primary" :to="{name: 'book', params: {book: null}}"><i
+                class="fa fa-plus me-2"></i> Create Book
+            </RouterLink>
           </div>
         </div>
       </div>
