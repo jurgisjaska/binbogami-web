@@ -28,7 +28,6 @@ const load = (books, metadata) => {
 };
 
 // @todo working sorting
-// @todo working search
 
 const onChangePage = (books, metadata, n) => {
   metadata.value.page = n;
@@ -39,6 +38,12 @@ const onChangePage = (books, metadata, n) => {
 
 const onActivePageChange = (n) => {
   onChangePage(active, activeMetadata, n);
+};
+
+// Reload active books card after an event to reload received.
+const onActiveReload = () => {
+  // @todo honor the search on reload
+  load(active, activeMetadata);
 };
 
 // @todo move search to separate component
@@ -113,7 +118,7 @@ load(active, activeMetadata);
           <th class="w-1"></th>
         </tr>
         </thead>
-        <BookList :books="active"></BookList>
+        <BookList :books="active" @reload="onActiveReload"></BookList>
       </table>
     </div>
     <div class="card-footer">

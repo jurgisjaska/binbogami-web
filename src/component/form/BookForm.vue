@@ -9,6 +9,9 @@ const route = useRoute();
 
 const name = ref(null);
 const description = ref(null);
+const closedAt = ref(null);
+const deletedAt = ref(null);
+
 const error = ref(null);
 const success = ref(null);
 
@@ -30,9 +33,12 @@ const onSubmit = () => {
         if (r.data.data.id) {
           error.value = null;
           success.value = "Book " + (id ? "updated" : "created") + " successfully!";
+
           id = r.data.data.id;
           name.value = r.data.data.name;
           description.value = r.data.data.description;
+          closedAt.value = r.data.data.closedAt;
+          deletedAt.value = r.data.data.deletedAt;
         }
       })
       .catch((e) => {
@@ -76,6 +82,15 @@ if (id) load(id);
 
     <HorizontalField type="text" label="Name" placeholder="Book name" v-model="name" :required="true"/>
     <TextField label="Description" placeholder="Book description" v-model="description"/>
+
+    <div class="field mb-3 row align-items-center" v-if="id">
+      <label class="col-3 col-form-label" >Status</label>
+      <div class="col">
+        <span class="badge bg-green-lt" v-if="!closedAt && !deletedAt">Active</span>
+        <span class="badge bg-default-lt" v-if="closedAt && !deletedAt">Closed</span>
+        <span class="badge bg-red-lt" v-if="deletedAt">Deleted</span>
+      </div>
+    </div>
 
     <div class="text-end">
       <RouterLink :to="{name: 'books'}" class="btn btn-secondary me-2">Back</RouterLink>

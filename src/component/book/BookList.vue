@@ -1,7 +1,9 @@
 <script setup>
-import {defineProps} from "vue";
+import {defineEmits, defineProps} from "vue";
 import moment from "moment";
+import BookAction from "@/component/book/BookAction.vue";
 
+const emit = defineEmits(["reload"]);
 defineProps({
   books: {
     type: Array,
@@ -12,6 +14,14 @@ defineProps({
 const formatDate = (dateString) => {
   if (!dateString) return "";
   return moment(dateString).format("YYYY-MM-DD HH:mm");
+};
+
+const onActionCompleted = () => {
+  emit("reload");
+};
+
+const onActionFailed = () => {
+  // @todo add some kind of indication on action failure
 };
 </script>
 
@@ -34,9 +44,18 @@ const formatDate = (dateString) => {
           <i class="fa fa-pen-to-square"></i>
         </RouterLink>
         <div class="dropdown">
-          <button class="btn align-text-top" data-bs-toggle="dropdown">Actions <i class="fa fa-angle-down ms-2"></i></button>
+          <button class="btn align-text-top" data-bs-toggle="dropdown">Actions <i class="fa fa-angle-down ms-2"></i>
+          </button>
           <div class="dropdown-menu dropdown-menu-end">
-            <a class="dropdown-item text-danger" href="#"><i class="fa fa-trash me-2"></i> Delete </a>
+            <a class="dropdown-item" href="#"></a>
+            <BookAction action="close" :id="book.id" @actionCompleted="onActionCompleted"
+                        @actionFailed="onActionFailed">
+              <i class="fa fa-circle-xmark me-2"></i> Close
+            </BookAction>
+            <BookAction action="delete" actionClass="dropdown-item text-danger" :id="book.id"
+                        @actionCompleted="onActionCompleted" @actionFailed="onActionFailed">
+              <i class="fa fa-trash me-2"></i> Delete
+            </BookAction>
           </div>
         </div>
       </div>
@@ -46,7 +65,7 @@ const formatDate = (dateString) => {
 </template>
 
 <style scoped>
-td.description{
+td.description {
   max-width: 200px;
 }
 </style>
