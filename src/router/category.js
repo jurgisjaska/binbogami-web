@@ -7,7 +7,7 @@ export default [
     component: () => import("@/view/category/CategoryView.vue"),
     meta: {
       layout: DashboardLayout,
-      title: "Book",
+      title: "Category",
       navigation: "categories",
     },
   },

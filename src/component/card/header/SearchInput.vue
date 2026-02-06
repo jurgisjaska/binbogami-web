@@ -1,11 +1,7 @@
 <script setup>
-import { ref } from 'vue';
-
-defineOptions({
-  name: 'SearchInput',
+defineProps({
+  modelValue: String,
 });
-
-const search = ref(null);
 </script>
 
 <template>
@@ -15,7 +11,8 @@ const search = ref(null);
       type="text"
       class="form-control"
       autocomplete="off"
-      v-model="search"
+      :value="modelValue"
+      @input="$emit('update:modelValue', $event.target.value)"
       placeholder="Search..."
     />
   </div>
