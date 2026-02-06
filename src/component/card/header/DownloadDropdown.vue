@@ -9,7 +9,9 @@ const onClick = (format) => {
 
 <template>
   <div class="dropdown">
-    <a href="#" class="btn" data-bs-toggle="dropdown"><i class="fa fa-download me-2"></i> Download</a>
+    <a href="#" class="btn" data-bs-toggle="dropdown">
+      <i class="fa fa-download me-2"></i> Download
+    </a>
     <div class="dropdown-menu">
       <a class="dropdown-item" href="#" @click.prevent="onClick('csv')">
         <i class="fa fa-file-csv me-2"></i> CSV

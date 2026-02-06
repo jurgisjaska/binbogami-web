@@ -2,7 +2,7 @@
 import api from "@/api.js";
 import BookList from "@/component/book/BookList.vue";
 import {ref, watch} from "vue";
-import Pagination from "@/component/Pagination.vue";
+import Pagination from "@/component/pagination/Pagination.vue";
 
 const active = ref([]);
 const activeMetadata = ref({status: "active", page: 1});

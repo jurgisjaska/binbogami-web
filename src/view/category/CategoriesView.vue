@@ -1,8 +1,9 @@
 <script setup>
-
+import CardFooter from "@/component/card/CardFooter.vue";
 import CardHeader from "@/component/card/CardHeader.vue";
 import DownloadDropdown from "@/component/card/header/DownloadDropdown.vue";
 import SearchInput from "@/component/card/header/SearchInput.vue";
+import LimitSelect from "@/component/pagination/LimitSelect.vue";
 </script>
 
 <template>
@@ -14,5 +15,13 @@ import SearchInput from "@/component/card/header/SearchInput.vue";
         <i class="fa fa-plus me-2"></i> Create Category
       </RouterLink>
     </CardHeader>
+    <CardFooter>
+      <div class="col-auto d-flex align-items-center">
+        <LimitSelect />
+      </div>
+      <div class="col-auto">
+        <!--        <Pagination :metadata="activeMetadata" @changePage="onActivePageChange"></Pagination>-->
+      </div>
+    </CardFooter>
   </div>
 </template>
