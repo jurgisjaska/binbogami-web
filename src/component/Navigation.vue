@@ -43,7 +43,7 @@ const signout = () => {
           <a class="nav-link" href="#">Locations</a>
         </li>
         <li class="nav-item" :class="$route.meta.navigation === 'categories' ? 'active' : ''">
-          <a class="nav-link" href="#">Categories</a>
+          <RouterLink class="nav-link" :to="{name: 'categories'}" >Categories</RouterLink>
         </li>
         <li class="nav-item" :class="$route.meta.navigation === 'entries' ? 'active' : ''">
           <a class="nav-link" href="#">Entries</a>

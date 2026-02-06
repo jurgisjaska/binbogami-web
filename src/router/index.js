@@ -1,13 +1,14 @@
 import DashboardLayout from "@/layout/DashboardLayout.vue";
 import DefaultLayout from "@/layout/DefaultLayout.vue";
 import HomeView from "@/view/HomeView.vue";
-import {createRouter, createWebHistory} from "vue-router";
+import { createRouter, createWebHistory } from "vue-router";
 
 // separated routes
 import authRoutes from "./auth.js";
-import userRoutes from "./user.js";
 import bookRoutes from "./book.js";
-import errorRoutes from "./error.js"
+import categoryRoutes from "./category.js";
+import errorRoutes from "./error.js";
+import userRoutes from "./user.js";
 
 // @todo add before checks for the token
 
@@ -45,6 +46,7 @@ const router = createRouter({
     ...authRoutes,
     ...userRoutes,
     ...bookRoutes,
+    ...categoryRoutes,
     ...errorRoutes,
   ],
 });
