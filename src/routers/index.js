@@ -1,0 +1,54 @@
+import DashboardLayout from '@/layouts/DashboardLayout.vue'
+import DefaultLayout from '@/layouts/DefaultLayout.vue'
+import HomeView from '@/views/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+
+// separated routes
+import authRoutes from './auth.js'
+import bookRoutes from './book.js'
+import categoryRoutes from './category.js'
+import errorRoutes from './error.js'
+import userRoutes from './user.js'
+
+// @todo add before checks for the token
+
+const router = createRouter({
+  history: createWebHistory(import.meta.env.BASE_URL),
+  routes: [
+    {
+      path: '/',
+      name: 'home',
+      component: HomeView,
+      meta: {
+        layout: DefaultLayout,
+        title: 'Home'
+      }
+    },
+
+    {
+      path: '/about',
+      name: 'about',
+      component: () => import('@/views/AboutView.vue'),
+      meta: {
+        layout: DefaultLayout,
+        title: 'About'
+      }
+    },
+    {
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import('@/views/DashboardView.vue'),
+      meta: {
+        layout: DashboardLayout,
+        title: 'Dashboard'
+      }
+    },
+    ...authRoutes,
+    ...userRoutes,
+    ...bookRoutes,
+    ...categoryRoutes,
+    ...errorRoutes
+  ]
+})
+
+export default router
