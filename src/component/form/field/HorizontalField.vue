@@ -7,9 +7,9 @@ defineProps({
   required: {
     type: Boolean,
     required: false,
-    default: false,
+    default: false
   }
-});
+})
 </script>
 
 <template>
@@ -18,11 +18,11 @@ defineProps({
 
     <div class="col">
       <input
-          class="form-control"
-          :type="type"
-          :placeholder="placeholder || label"
-          :value="modelValue"
-          @input="$emit('update:modelValue', $event.target.value)"
+        class="form-control"
+        :type="type"
+        :placeholder="placeholder || label"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
       />
     </div>
   </div>

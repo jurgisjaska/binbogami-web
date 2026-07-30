@@ -1,24 +1,24 @@
-import DashboardLayout from "@/layout/DashboardLayout.vue";
+import DashboardLayout from '@/layout/DashboardLayout.vue'
 
 export default [
   {
-    path: "/books/:book?",
-    name: "book",
-    component: () => import("@/view/book/BookView.vue"),
+    path: '/books/:book?',
+    name: 'book',
+    component: () => import('@/view/book/BookView.vue'),
     meta: {
       layout: DashboardLayout,
-      title: "Book",
-      navigation: "books",
-    },
+      title: 'Book',
+      navigation: 'books'
+    }
   },
   {
-    path: "/books/",
-    name: "books",
-    component: () => import("@/view/book/BooksView.vue"),
+    path: '/books/',
+    name: 'books',
+    component: () => import('@/view/book/BooksView.vue'),
     meta: {
       layout: DashboardLayout,
-      title: "Books",
-      navigation: "books",
-    },
-  },
-];
+      title: 'Books',
+      navigation: 'books'
+    }
+  }
+]

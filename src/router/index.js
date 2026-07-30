@@ -1,14 +1,14 @@
-import DashboardLayout from "@/layout/DashboardLayout.vue";
-import DefaultLayout from "@/layout/DefaultLayout.vue";
-import HomeView from "@/view/HomeView.vue";
-import { createRouter, createWebHistory } from "vue-router";
+import DashboardLayout from '@/layout/DashboardLayout.vue'
+import DefaultLayout from '@/layout/DefaultLayout.vue'
+import HomeView from '@/view/HomeView.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 
 // separated routes
-import authRoutes from "./auth.js";
-import bookRoutes from "./book.js";
-import categoryRoutes from "./category.js";
-import errorRoutes from "./error.js";
-import userRoutes from "./user.js";
+import authRoutes from './auth.js'
+import bookRoutes from './book.js'
+import categoryRoutes from './category.js'
+import errorRoutes from './error.js'
+import userRoutes from './user.js'
 
 // @todo add before checks for the token
 
@@ -16,39 +16,39 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: "/",
-      name: "home",
+      path: '/',
+      name: 'home',
       component: HomeView,
       meta: {
         layout: DefaultLayout,
-        title: "Home",
-      },
+        title: 'Home'
+      }
     },
 
     {
-      path: "/about",
-      name: "about",
-      component: () => import("@/view/AboutView.vue"),
+      path: '/about',
+      name: 'about',
+      component: () => import('@/view/AboutView.vue'),
       meta: {
         layout: DefaultLayout,
-        title: "About",
-      },
+        title: 'About'
+      }
     },
     {
-      path: "/dashboard",
-      name: "dashboard",
-      component: () => import("@/view/DashboardView.vue"),
+      path: '/dashboard',
+      name: 'dashboard',
+      component: () => import('@/view/DashboardView.vue'),
       meta: {
         layout: DashboardLayout,
-        title: "Dashboard",
-      },
+        title: 'Dashboard'
+      }
     },
     ...authRoutes,
     ...userRoutes,
     ...bookRoutes,
     ...categoryRoutes,
-    ...errorRoutes,
-  ],
-});
+    ...errorRoutes
+  ]
+})
 
-export default router;
+export default router

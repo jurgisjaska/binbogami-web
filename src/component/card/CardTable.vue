@@ -1,5 +1,5 @@
 <script setup>
-import TableHead from "@/component/card/table/TableHead.vue";
+import TableHead from '@/component/card/table/TableHead.vue'
 </script>
 
 <template>
@@ -8,8 +8,6 @@ import TableHead from "@/component/card/table/TableHead.vue";
       <TableHead :items="{}" />
 
       List
-
     </table>
   </div>
-
 </template>

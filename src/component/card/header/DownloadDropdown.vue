@@ -1,10 +1,10 @@
 <script setup>
-import { defineEmits } from "vue";
+import { defineEmits } from 'vue'
 
-const emit = defineEmits(["download"]);
+const emit = defineEmits(['download'])
 const onClick = (format) => {
-  emit("download", format);
-};
+  emit('download', format)
+}
 </script>
 
 <template>

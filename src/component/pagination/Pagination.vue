@@ -1,14 +1,14 @@
 <!-- eslint-disable vue/multi-word-component-names -->
 <script setup>
-import {defineEmits, defineProps} from "vue";
+import { defineEmits, defineProps } from 'vue'
 
-const emit = defineEmits(["changePage"]);
+const emit = defineEmits(['changePage'])
 defineProps({
   metadata: {
     type: Object,
-    required: true,
-  },
-});
+    required: true
+  }
+})
 </script>
 
 <template>
@@ -20,10 +20,10 @@ defineProps({
     </li>
 
     <li
-        class="page-item"
-        v-for="n in metadata.pages"
-        :key="n"
-        :class="metadata.page === n ? 'active' : ''"
+      class="page-item"
+      v-for="n in metadata.pages"
+      :key="n"
+      :class="metadata.page === n ? 'active' : ''"
     >
       <a class="page-link" href="#" @click.prevent="emit('changePage', n)">{{ n }}</a>
     </li>

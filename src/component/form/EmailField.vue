@@ -3,9 +3,9 @@ defineProps({
   modelValue: String,
   disabled: {
     type: Boolean,
-    required: false,
-  },
-});
+    required: false
+  }
+})
 </script>
 
 <template>
@@ -21,7 +21,7 @@ defineProps({
         :value="modelValue"
         @input="$emit('update:modelValue', $event.target.value)"
         :disabled="disabled"
-      >
+      />
     </div>
   </div>
 </template>

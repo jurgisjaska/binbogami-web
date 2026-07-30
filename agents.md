@@ -6,6 +6,7 @@
 - **Build Tool**: Vite
 - **State Management**: Pinia
 - **Styling**: Bootstrap 5 & Tabler Core (SCSS)
+- **Dashboard template**: https://tabler.io/dashboard
 - **Project Name**: Binbogami Web
 
 ## Project Structure
@@ -20,6 +21,9 @@
   - `view/`: Pages/views organized by feature folders (e.g., `auth/`, `user/`, `book/`)
 - `index.html`: Main HTML entry point
 - `package.json`: Project scripts and dependencies
+
+## API
+- https://github.com/jurgisjaska/binbogami 
 
 ## Development Workflow
 - **Development Server**: Run `npm run dev` to start the local Vite server.

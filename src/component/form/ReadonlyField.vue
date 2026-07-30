@@ -2,23 +2,18 @@
 defineProps({
   label: {
     type: String,
-    required: true,
+    required: true
   },
   value: {
     type: String,
-    required: false,
-  },
-});
+    required: false
+  }
+})
 </script>
 
 <template>
   <div class="field mb-3">
     <div class="form-label">{{ label }}</div>
-    <input
-      class="form-control-plaintext"
-      type="text"
-      :value="value"
-      readonly
-    />
+    <input class="form-control-plaintext" type="text" :value="value" readonly />
   </div>
 </template>

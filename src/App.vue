@@ -8,7 +8,6 @@ import { RouterView } from 'vue-router'
   </Component>
 </template>
 
-
 <style scoped>
 #app {
   display: contents;

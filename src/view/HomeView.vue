@@ -1,5 +1,3 @@
 <template>
-  <main>
-    EMPTY
-  </main>
+  <main>EMPTY</main>
 </template>

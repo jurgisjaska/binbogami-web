@@ -1,5 +1,5 @@
 <script setup>
-import BookForm from "@/component/form/BookForm.vue";
+import BookForm from '@/component/form/BookForm.vue'
 </script>
 
 <template>
@@ -8,7 +8,7 @@ import BookForm from "@/component/form/BookForm.vue";
       <h3 class="card-title">Book information</h3>
     </div>
     <div class="card-body">
-      <BookForm/>
+      <BookForm />
     </div>
   </div>
 </template>

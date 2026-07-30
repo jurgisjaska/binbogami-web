@@ -1,43 +1,44 @@
 <script setup>
-import api from "@/api.js";
-import EmailField from "@/component/form/EmailField.vue";
-import PasswordField from "@/component/form/PasswordField.vue";
-import { useTokenStore } from "@/store/token.js";
-import { useUserStore } from "@/store/user.js";
-import { ref } from "vue";
-import { RouterLink, useRouter } from "vue-router";
+import api from '@/api.js'
+import EmailField from '@/component/form/EmailField.vue'
+import PasswordField from '@/component/form/PasswordField.vue'
+import { useTokenStore } from '@/store/token.js'
+import { useUserStore } from '@/store/user.js'
+import { ref } from 'vue'
+import { RouterLink, useRouter } from 'vue-router'
 
-const tokenStore = useTokenStore();
-const userStore = useUserStore();
+const tokenStore = useTokenStore()
+const userStore = useUserStore()
 
-const router = useRouter();
+const router = useRouter()
 
-const email = ref("");
-const password = ref("");
+const email = ref('')
+const password = ref('')
 
-const error = ref(null);
+const error = ref(null)
 
 const signin = () => {
-  error.value = null;
+  error.value = null
   const data = {
-    "email": email.value,
-    "password": password.value,
-  };
+    email: email.value,
+    password: password.value
+  }
 
-  api.put("auth/signin", data)
+  api
+    .put('auth/signin', data)
     .then((r) => {
-      const token = r.data.data.token;
-      const user = r.data.data.user;
+      const token = r.data.data.token
+      const user = r.data.data.user
 
-      tokenStore.set(token);
-      userStore.set(user);
+      tokenStore.set(token)
+      userStore.set(user)
 
-      router.push({ name: "dashboard" });
+      router.push({ name: 'dashboard' })
     })
     .catch((e) => {
-      error.value = e.response?.data?.message || "Unexpected error";
-    });
-};
+      error.value = e.response?.data?.message || 'Unexpected error'
+    })
+}
 </script>
 
 <template>

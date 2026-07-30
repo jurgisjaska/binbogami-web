@@ -1,5 +1,5 @@
 <script setup>
-import {defineProps} from "vue";
+import { defineProps } from 'vue'
 
 defineProps({
   label: String,
@@ -8,9 +8,9 @@ defineProps({
   required: {
     type: Boolean,
     required: false,
-    default: false,
+    default: false
   }
-});
+})
 </script>
 
 <template>
@@ -19,10 +19,10 @@ defineProps({
 
     <div class="col">
       <textarea
-          class="form-control"
-          :placeholder="placeholder || label"
-          :value="modelValue"
-          @input="$emit('update:modelValue', $event.target.value)"
+        class="form-control"
+        :placeholder="placeholder || label"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
       />
     </div>
   </div>

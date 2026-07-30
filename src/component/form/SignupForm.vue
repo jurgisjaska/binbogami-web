@@ -1,86 +1,86 @@
 <script setup>
-import api from "@/api.js";
-import EmailField from "@/component/form/EmailField.vue";
-import DefaultField from "@/component/form/field/DefaultField.vue";
-import PasswordField from "@/component/form/PasswordField.vue";
-import { useTokenStore } from "@/store/token.js";
-import { useUserStore } from "@/store/user.js";
-import { ref } from "vue";
-import { RouterLink, useRoute, useRouter } from "vue-router";
+import api from '@/api.js'
+import EmailField from '@/component/form/EmailField.vue'
+import DefaultField from '@/component/form/field/DefaultField.vue'
+import PasswordField from '@/component/form/PasswordField.vue'
+import { useTokenStore } from '@/store/token.js'
+import { useUserStore } from '@/store/user.js'
+import { ref } from 'vue'
+import { RouterLink, useRoute, useRouter } from 'vue-router'
 
-const router = useRouter();
-const route = useRoute();
+const router = useRouter()
+const route = useRoute()
 
-const tokenStore = useTokenStore();
-const userStore = useUserStore();
+const tokenStore = useTokenStore()
+const userStore = useUserStore()
 
-const invitation = ref(null);
+const invitation = ref(null)
 
-const email = ref(null);
-const password = ref(null);
-const repeatedPassword = ref(null);
-const name = ref(null);
-const surname = ref(null);
+const email = ref(null)
+const password = ref(null)
+const repeatedPassword = ref(null)
+const name = ref(null)
+const surname = ref(null)
 
-const error = ref(null);
+const error = ref(null)
 
-(() => {
-  const id = route.params.invitation ?? null;
-  error.value = null;
-  api.get("/p/invitation/" + id)
+;(() => {
+  const id = route.params.invitation ?? null
+  error.value = null
+  api
+    .get('/p/invitation/' + id)
     .then((r) => {
-      invitation.value = r.data.data;
+      invitation.value = r.data.data
     })
     .catch((e) => {
-      console.error(e.response?.data?.message || "Unexpected error");
-      router.push({ name: "signup" });
-    });
-})();
+      console.error(e.response?.data?.message || 'Unexpected error')
+      router.push({ name: 'signup' })
+    })
+})()
 
 const signup = () => {
-  error.value = null;
+  error.value = null
   const data = {
-    "email": email.value,
-    "password": password.value,
-    "repeatedPassword": repeatedPassword.value,
-    "name": name.value,
-    "surname": surname.value,
-  };
-
-  if (invitation.value) {
-    data.invitationId = invitation.value.invitation.id;
+    email: email.value,
+    password: password.value,
+    repeatedPassword: repeatedPassword.value,
+    name: name.value,
+    surname: surname.value
   }
 
-  api.post("auth/signup", data)
+  if (invitation.value) {
+    data.invitationId = invitation.value.invitation.id
+  }
+
+  api
+    .post('auth/signup', data)
     .then((r) => {
-      const data = r.data.data;
+      const data = r.data.data
 
-      userStore.set(data.user);
-      tokenStore.set(data.token);
+      userStore.set(data.user)
+      tokenStore.set(data.token)
 
-      router.push("dashboard");
+      router.push('dashboard')
     })
     .catch((e) => {
-      error.value = e.response?.data?.message || "Unexpected error";
-    });
-};
+      error.value = e.response?.data?.message || 'Unexpected error'
+    })
+}
 </script>
 
 <template>
   <div class="card mb-4" v-if="invitation">
     <header class="card-header">
-      <div class="card-header-title">
-        [ NAME ]
-      </div>
+      <div class="card-header-title">[ NAME ]</div>
     </header>
     <div class="card-content">
-      <div class="content">
-        [ DESCRIPTION ]
-      </div>
+      <div class="content">[ DESCRIPTION ]</div>
     </div>
     <footer class="card-footer has-text-left">
       <div class="card-footer-item has-text-left is-small">
-        Expire on&nbsp;<time :datetime="invitation.invitation.expiredAt">{{ invitation.invitation.expiredAt }}</time>
+        Expire on&nbsp;<time :datetime="invitation.invitation.expiredAt">{{
+          invitation.invitation.expiredAt
+        }}</time>
       </div>
     </footer>
   </div>

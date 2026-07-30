@@ -1,64 +1,64 @@
 <script setup>
-import api from "@/api.js";
-import BookList from "@/component/book/BookList.vue";
-import {ref, watch} from "vue";
-import Pagination from "@/component/pagination/Pagination.vue";
+import api from '@/api.js'
+import BookList from '@/component/book/BookList.vue'
+import { ref, watch } from 'vue'
+import Pagination from '@/component/pagination/Pagination.vue'
 
-const active = ref([]);
-const activeMetadata = ref({status: "active", page: 1});
+const active = ref([])
+const activeMetadata = ref({ status: 'active', page: 1 })
 
-const search = ref("");
-let timeout;
+const search = ref('')
+let timeout
 
 // const closed = ref([]);
 // const closedMetadata = ref([]);
 
 const load = (books, metadata) => {
   api
-      .get("/v1/books", {
-        params: metadata.value,
-      })
-      .then((r) => {
-        books.value = r.data.data;
-        metadata.value = r.data.metadata;
-      })
-      .catch((e) => {
-        console.error(e.response?.data?.message || "Unexpected error");
-      });
-};
+    .get('/v1/books', {
+      params: metadata.value
+    })
+    .then((r) => {
+      books.value = r.data.data
+      metadata.value = r.data.metadata
+    })
+    .catch((e) => {
+      console.error(e.response?.data?.message || 'Unexpected error')
+    })
+}
 
 // @todo working sorting
 
 const onChangePage = (books, metadata, n) => {
-  metadata.value.page = n;
-  activeMetadata.value.query = search;
+  metadata.value.page = n
+  activeMetadata.value.query = search
 
-  load(books, metadata);
-};
+  load(books, metadata)
+}
 
 const onActivePageChange = (n) => {
-  onChangePage(active, activeMetadata, n);
-};
+  onChangePage(active, activeMetadata, n)
+}
 
 // Reload active books card after an event to reload received.
 const onActiveReload = () => {
   // @todo honor the search on reload
-  load(active, activeMetadata);
-};
+  load(active, activeMetadata)
+}
 
 // @todo move search to separate component
 watch(search, (q) => {
-  clearTimeout(timeout);
+  clearTimeout(timeout)
 
   timeout = setTimeout(() => {
-    activeMetadata.value.query = q;
-    activeMetadata.value.page = 1;
-    load(active, activeMetadata);
-  }, 500);
-});
+    activeMetadata.value.query = q
+    activeMetadata.value.page = 1
+    load(active, activeMetadata)
+  }, 500)
+})
 
 // Load books on page open.
-load(active, activeMetadata);
+load(active, activeMetadata)
 </script>
 
 <template>
@@ -74,24 +74,29 @@ load(active, activeMetadata);
             <div class="input-group input-group-flat w-auto">
               <span class="input-group-text"><i class="fa fa-magnifying-glass"></i></span>
               <input
-                  type="text"
-                  class="form-control"
-                  autocomplete="off"
-                  v-model="search"
-                  placeholder="Search..."
+                type="text"
+                class="form-control"
+                autocomplete="off"
+                v-model="search"
+                placeholder="Search..."
               />
             </div>
 
             <div class="dropdown">
-              <a href="#" class="btn" data-bs-toggle="dropdown"><i class="fa fa-download me-2"></i> Download</a>
+              <a href="#" class="btn" data-bs-toggle="dropdown"
+                ><i class="fa fa-download me-2"></i> Download</a
+              >
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="#">Action</a>
                 <a class="dropdown-item" href="#">Another action</a>
                 <a class="dropdown-item" href="#">Third action</a>
               </div>
             </div>
-            <RouterLink href="#" class="btn btn-primary" :to="{name: 'book', params: {book: null}}"><i
-                class="fa fa-plus me-2"></i> Create Book
+            <RouterLink
+              href="#"
+              class="btn btn-primary"
+              :to="{ name: 'book', params: { book: null } }"
+              ><i class="fa fa-plus me-2"></i> Create Book
             </RouterLink>
           </div>
         </div>
@@ -100,23 +105,33 @@ load(active, activeMetadata);
     <div class="table-responsive overflow-visible">
       <table class="table table-selectable card-table table-vcenter text-nowrap datatable">
         <thead>
-        <tr>
-          <th class="w-1"></th>
-          <th>
-            <button class="table-sort d-flex justify-content-between" data-sort="sort-name">Name</button>
-          </th>
-          <th>
-            <button class="table-sort d-flex justify-content-between" data-sort="sort-description">Description
-            </button>
-          </th>
-          <th>
-            <button class="table-sort d-flex justify-content-between" data-sort="sort-author">Author</button>
-          </th>
-          <th>
-            <button class="table-sort d-flex justify-content-between" data-sort="sort-created-at">Created At</button>
-          </th>
-          <th class="w-1"></th>
-        </tr>
+          <tr>
+            <th class="w-1"></th>
+            <th>
+              <button class="table-sort d-flex justify-content-between" data-sort="sort-name">
+                Name
+              </button>
+            </th>
+            <th>
+              <button
+                class="table-sort d-flex justify-content-between"
+                data-sort="sort-description"
+              >
+                Description
+              </button>
+            </th>
+            <th>
+              <button class="table-sort d-flex justify-content-between" data-sort="sort-author">
+                Author
+              </button>
+            </th>
+            <th>
+              <button class="table-sort d-flex justify-content-between" data-sort="sort-created-at">
+                Created At
+              </button>
+            </th>
+            <th class="w-1"></th>
+          </tr>
         </thead>
         <BookList :books="active" @reload="onActiveReload"></BookList>
       </table>
@@ -132,5 +147,4 @@ load(active, activeMetadata);
       </div>
     </div>
   </div>
-
 </template>

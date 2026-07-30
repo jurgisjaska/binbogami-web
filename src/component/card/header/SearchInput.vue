@@ -1,7 +1,7 @@
 <script setup>
 defineProps({
-  modelValue: String,
-});
+  modelValue: String
+})
 </script>
 
 <template>
