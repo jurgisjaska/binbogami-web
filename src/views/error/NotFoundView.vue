@@ -1,7 +1,7 @@
 <template>
   <div class="empty">
     <div class="empty-img">
-      <img src="@/asset/error404.svg" alt="404 Error" />
+      <img src="@/assets/error404.svg" alt="404 Error" />
     </div>
     <p class="empty-title">Oops… You just found an error page</p>
     <p class="empty-subtitle text-secondary">

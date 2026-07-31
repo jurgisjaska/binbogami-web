@@ -23,6 +23,7 @@ const password = ref(null)
 const repeatedPassword = ref(null)
 const name = ref(null)
 const surname = ref(null)
+const position = ref(null)
 
 const error = ref(null)
 
@@ -47,7 +48,8 @@ const signup = () => {
     password: password.value,
     repeatedPassword: repeatedPassword.value,
     name: name.value,
-    surname: surname.value
+    surname: surname.value,
+    position: position.value
   }
 
   if (invitation.value) {
@@ -96,6 +98,7 @@ const signup = () => {
     <DefaultField label="Repeated Password" type="password" v-model="repeatedPassword" />
     <DefaultField label="Name" type="text" v-model="name" />
     <DefaultField label="Surname" type="text" v-model="surname" />
+    <DefaultField label="Position (optional)" type="text" v-model="position" />
 
     <div class="form-footer">
       <button type="submit" class="btn btn-primary w-100">Sign Up</button>

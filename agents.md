@@ -5,9 +5,9 @@
 - **Framework**: Vue 3 (Composition API, `<script setup>`)
 - **Build Tool**: Vite
 - **State Management**: Pinia
-- **Styling**: Bootstrap 5 & Tabler Core (SCSS)
-- **Dashboard template**: https://tabler.io/dashboard
-- **Project Name**: Binbogami Web
+- **Styling**: Bootstrap 5 & Tabler (SCSS)
+- **Dashboard Template**: https://tabler.io/dashboard
+- **Icon Library**: Font Awesome 6
 
 ## Project Structure
 - `public/`: Static assets served directly
@@ -49,4 +49,5 @@
 ## Agent Instructions
 - Verify changes by running `npm run lint` and `npm run build` when making significant edits.
 - Keep components focused and reusable.
-- Follow the existing API integration pattern using the shared Axios client in [api.js](file:///Users/jurgis/Develop/binbogami-web/src/api.js).
+- Follow the existing API integration pattern using the shared Axios clients in [api](./src/api).
+- Keep commit messages concise and descriptive, do not use prefixes.
