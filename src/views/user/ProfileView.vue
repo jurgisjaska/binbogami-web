@@ -1,5 +1,5 @@
 <script setup>
-import ReadonlyField from '@/components/form/ReadonlyField.vue'
+import ReadonlyField from '@/components/forms/ReadonlyField.vue'
 import { useUserStore } from '@/stores/user.js'
 import { computed } from 'vue'
 

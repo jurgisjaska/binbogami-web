@@ -1,5 +1,5 @@
 <script setup>
-import EmailField from '@/components/form/EmailField.vue'
+import EmailField from '@/components/forms/EmailField.vue'
 import { inject, ref } from 'vue'
 import { RouterLink } from 'vue-router'
 

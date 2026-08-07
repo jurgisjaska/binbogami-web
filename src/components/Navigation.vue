@@ -86,6 +86,7 @@ const signout = () => {
               tabindex="-1"
               aria-label="Show notifications"
               data-bs-auto-close="outside"
+              @click.prevent
             >
               <i class="fa icon icon-2 fa-bell"></i>
               <span class="badge bg-red"></span>
@@ -106,6 +107,7 @@ const signout = () => {
               data-bs-toggle="dropdown"
               aria-label="Open user menu"
               aria-expanded="false"
+              @click.prevent
             >
               <span
                 class="avatar avatar-sm"

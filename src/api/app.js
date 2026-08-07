@@ -34,6 +34,8 @@ appClient.interceptors.response.use(
       useUserStore().clear()
 
       router.push('/signin')
+    } else if (error.response?.status >= 500) {
+      router.push({ name: 'error_500' })
     }
     return Promise.reject(error)
   }

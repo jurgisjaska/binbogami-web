@@ -1,5 +1,5 @@
 <script setup>
-import ForgotPasswordForm from '@/components/form/ForgotPasswordForm.vue'
+import ForgotPasswordForm from '@/components/forms/auth/ForgotPasswordForm.vue'
 import { RouterLink } from 'vue-router'
 </script>
 

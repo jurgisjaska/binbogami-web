@@ -1,5 +1,4 @@
-// bootstrap, tabler & fontawesome
-import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+// tabler & fontawesome
 import '@tabler/core/scss/tabler.scss'
 import '@tabler/core/js/tabler.js'
 import '@tabler/core/js/tabler-theme.js'

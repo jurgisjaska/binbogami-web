@@ -1,7 +1,7 @@
 <script setup>
-import EmailField from '@/components/form/EmailField.vue'
-import DefaultField from '@/components/form/field/DefaultField.vue'
-import PasswordField from '@/components/form/PasswordField.vue'
+import EmailField from '@/components/forms/EmailField.vue'
+import DefaultField from '@/components/forms/fields/DefaultField.vue'
+import PasswordField from '@/components/forms/PasswordField.vue'
 import { useTokenStore } from '@/stores/token.js'
 import { useUserStore } from '@/stores/user.js'
 import { inject, ref } from 'vue'

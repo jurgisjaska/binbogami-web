@@ -1,6 +1,6 @@
 <script setup>
-import DefaultField from '@/components/form/field/DefaultField.vue'
-import PasswordField from '@/components/form/PasswordField.vue'
+import DefaultField from '@/components/forms/fields/DefaultField.vue'
+import PasswordField from '@/components/forms/PasswordField.vue'
 import { inject, ref } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
 
@@ -32,7 +32,7 @@ const reset = () => {
   error.value = null
   const data = {
     password: password.value,
-    repeatedPassword: repeatedPassword.value,
+    repeated_password: repeatedPassword.value,
     token: token.value
   }
 

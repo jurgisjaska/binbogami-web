@@ -1,5 +1,5 @@
 <script setup>
-import ResetPasswordForm from '@/components/form/ResetPasswordForm.vue'
+import ResetPasswordForm from '@/components/forms/auth/ResetPasswordForm.vue'
 import { RouterLink } from 'vue-router'
 </script>
 

@@ -5,11 +5,11 @@ import { RouterLink } from 'vue-router'
 <template>
   <div class="empty">
     <div class="empty-img">
-      <img src="@/assets/error404.svg" alt="404 Error" />
+      <img src="@/assets/error500.svg" alt="500 Error" />
     </div>
     <p class="empty-title">Oops… You just found an error page</p>
     <p class="empty-subtitle text-secondary">
-      We are sorry but the page you are looking for was not found
+      We are sorry but our server encountered an internal error
     </p>
     <div class="empty-action">
       <RouterLink :to="{ name: 'home' }" class="btn btn-primary btn-4">
