@@ -99,7 +99,7 @@ const signout = () => {
               </div>
             </div>
           </div>
-          <div class="nav-item dropdown">
+          <div class="nav-item dropdown" v-if="user">
             <a
               href="#"
               class="nav-link d-flex lh-1 p-0 px-2"
@@ -113,8 +113,8 @@ const signout = () => {
               >
               </span>
               <div class="d-none d-xl-block ps-2">
-                <div>{{ user.name }} {{ user.surname }}</div>
-                <div class="mt-1 small text-secondary">{{ user.position || 'undefined' }}</div>
+                <div>{{ user?.name }} {{ user?.surname }}</div>
+                <div class="mt-1 small text-secondary">{{ user?.position || 'undefined' }}</div>
               </div>
             </a>
             <div class="dropdown-menu dropdown-menu-end dropdown-menu-arrow">
@@ -125,7 +125,7 @@ const signout = () => {
               <RouterLink class="dropdown-item" :to="{ name: 'users_settings' }">
                 <i class="fa-solid fa-gear"></i> Settings
               </RouterLink>
-              <a class="dropdown-item text-danger" @click.prevent="signout" v-if="user">
+              <a class="dropdown-item text-danger" @click.prevent="signout">
                 <i class="fa-solid fa-right-from-bracket"></i> Sign Out
               </a>
             </div>

@@ -12,13 +12,13 @@
 ## Project Structure
 - `public/`: Static assets served directly
 - `src/`: Core source files
-  - `api.js`: Axios API client instance with interceptors for token management
-  - `asset/`: SCSS and styling assets
-  - `component/`: Reusable UI components (e.g., `Navigation.vue`)
-  - `layout/`: Page layouts (e.g., `DashboardLayout.vue`, `AuthLayout.vue`)
-  - `router/`: Router configuration, modularly split (e.g., `auth.js`, `user.js`)
-  - `store/`: Pinia state management stores (e.g., `token.js`, `user.js`)
-  - `view/`: Pages/views organized by feature folders (e.g., `auth/`, `user/`, `book/`)
+  - `api`: Axios API client instances with interceptors
+  - `assets/`: SCSS and styling assets
+  - `components/`: Reusable UI components (e.g., `Navigation.vue`)
+  - `layouts/`: Page layouts (e.g., `DashboardLayout.vue`, `AuthLayout.vue`)
+  - `routers/`: Router configuration, modularly split (e.g., `auth.js`, `user.js`)
+  - `stores/`: Pinia state management stores (e.g., `token.js`, `user.js`)
+  - `views/`: Pages/views organized by feature folders (e.g., `auth/`, `user/`, `book/`)
 - `index.html`: Main HTML entry point
 - `package.json`: Project scripts and dependencies
 
