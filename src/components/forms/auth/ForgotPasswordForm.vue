@@ -33,8 +33,8 @@ const forgot = () => {
 
 <template>
   <form class="forgot-password-form" @submit.prevent="forgot">
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
-    <div class="alert alert-success" v-if="success">{{ success }}</div>
+    <div class="alert alert-danger" role="alert" v-if="error">{{ error }}</div>
+    <div class="alert alert-success" role="alert" v-if="success">{{ success }}</div>
 
     <p class="text-secondary mb-4">
       Please enter your registered email address below and we'll send you instructions on how to

@@ -90,7 +90,7 @@ const signup = () => {
   </div>
 
   <h2 class="text-center h2 mb-4">Create new account</h2>
-  <div class="alert alert-danger" v-if="error">{{ error }}</div>
+  <div class="alert alert-danger" role="alert" v-if="error">{{ error }}</div>
 
   <form class="signup-form" @submit.prevent="signup">
     <EmailField v-model="email" />

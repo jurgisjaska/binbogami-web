@@ -18,4 +18,3 @@ authClient.interceptors.response.use(
 )
 
 export default authClient
-

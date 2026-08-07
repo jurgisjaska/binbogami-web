@@ -69,12 +69,12 @@ if (id) load(id)
 
 <template>
   <form class="book-form" @submit.prevent="onSubmit">
-    <div class="alert alert-danger" v-if="error">
+    <div class="alert alert-danger" role="alert" v-if="error">
       <div class="alert-icon"><i class="fa fa-exclamation-circle"></i></div>
       {{ error }}
     </div>
 
-    <div class="alert alert-success" v-if="success">
+    <div class="alert alert-success" role="alert" v-if="success">
       <div class="alert-icon"><i class="fa fa-check"></i></div>
       {{ success }}
       <RouterLink :to="{ name: 'books' }">Return to the books</RouterLink>

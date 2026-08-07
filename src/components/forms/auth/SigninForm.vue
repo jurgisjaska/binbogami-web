@@ -44,7 +44,7 @@ const signin = () => {
 <template>
   <form class="signin-form" @submit.prevent="signin">
     <h2 class="text-center h2 mb-4">Sign In to your account</h2>
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
+    <div class="alert alert-danger" role="alert" v-if="error">{{ error }}</div>
 
     <EmailField v-model="email" />
     <PasswordField v-model="password" :forgot="true" />
