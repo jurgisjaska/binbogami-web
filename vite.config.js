@@ -8,12 +8,22 @@ export default defineConfig({
   plugins: [
     vue(),
   ],
+  css: {
+    preprocessorOptions: {
+      scss: {
+        quietDeps: true,
+        silenceDeprecations: ['import', 'if-function', 'global-builtin', 'color-functions'],
+      },
+    },
+  },
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
     }
   },
   server: {
-    port: 8191
+    host: true,
+    port: 8191,
+    allowedHosts: ['binbogami', 'localhost', '127.0.0.1'],
   }
 })
