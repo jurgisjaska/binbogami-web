@@ -30,12 +30,23 @@ const signin = () => {
       const token = r.data.data.token
       const user = r.data.data.user
 
+      if (user?.confirmed_at === null) {
+        router.push({ name: 'wait' })
+        return
+      }
+
       tokenStore.set(token)
       userStore.set(user)
 
       router.push({ name: 'dashboard' })
     })
     .catch((e) => {
+      const user = e.response?.data?.data?.user || e.response?.data?.data
+      if (user?.confirmed_at === null) {
+        router.push({ name: 'wait' })
+        return
+      }
+
       error.value = e.response?.data?.message || 'Unexpected error'
     })
 }

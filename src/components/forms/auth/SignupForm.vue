@@ -46,25 +46,33 @@ const signup = () => {
   const data = {
     email: email.value,
     password: password.value,
-    repeatedPassword: repeatedPassword.value,
+    repeated_password: repeatedPassword.value,
     name: name.value,
     surname: surname.value,
     position: position.value
   }
 
-  if (invitation.value) {
+  const isInvited = !!invitation.value
+
+  if (isInvited) {
     data.invitationId = invitation.value.invitation.id
   }
 
   authApi
     .post('auth/signup', data)
     .then((r) => {
-      const data = r.data.data
+      const response = r.data.data
+      const user = response?.user
 
-      userStore.set(data.user)
-      tokenStore.set(data.token)
+      if (user?.confirmed_at === null) {
+        router.push({ name: 'wait' })
+        return
+      }
 
-      router.push('dashboard')
+      userStore.set(response.user)
+      tokenStore.set(response.token)
+
+      router.push({ name: 'dashboard' })
     })
     .catch((e) => {
       error.value = e.response?.data?.message || 'Unexpected error'

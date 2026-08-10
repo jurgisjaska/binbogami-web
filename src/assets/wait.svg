@@ -1,0 +1,75 @@
+<svg class="img" xmlns="http://www.w3.org/2000/svg" height="256" fill="none" viewBox="0 0 800 600">
+    <style>
+        :where(.theme-dark, [data-bs-theme="dark"]) .tblr-illustrations-wait-bg {
+            fill: #1a2030;
+        }
+        :where(.theme-dark, [data-bs-theme="dark"]) .tblr-illustrations-wait-bubble {
+            fill: #232b41;
+        }
+        :where(.theme-dark, [data-bs-theme="dark"]) .tblr-illustrations-wait-dark {
+            fill: #454c5e;
+        }
+        :where(.theme-dark, [data-bs-theme="dark"]) .tblr-illustrations-wait-card {
+            fill: #232b41;
+        }
+        @media (prefers-color-scheme: dark) {
+            .tblr-illustrations-wait-bg {
+                fill: #1a2030;
+            }
+            .tblr-illustrations-wait-bubble {
+                fill: #232b41;
+            }
+            .tblr-illustrations-wait-dark {
+                fill: #454c5e;
+            }
+            .tblr-illustrations-wait-card {
+                fill: #232b41;
+            }
+        }
+    </style>
+    <!-- Ground Shadow -->
+    <ellipse cx="400" cy="540" rx="260" ry="12" fill="#A6A9B3" opacity="0.4" class="tblr-illustrations-wait-bg" />
+    
+    <!-- Background Cloud/Bubble -->
+    <path d="M220 280C220 180 300 120 400 120C500 120 580 180 580 280C620 310 640 370 610 430C580 490 510 510 400 510C290 510 220 490 190 430C160 370 180 310 220 280Z" fill="#F7F8FC" class="tblr-illustrations-wait-bubble" />
+
+    <!-- Central Card -->
+    <g transform="translate(290, 150)">
+        <rect x="0" y="0" width="220" height="290" rx="16" fill="#232B41" class="tblr-illustrations-wait-card" />
+        <rect x="14" y="14" width="192" height="262" rx="10" fill="#1A2030" />
+        
+        <!-- Window Controls -->
+        <circle cx="34" cy="34" r="5" fill="#D63939" />
+        <circle cx="50" cy="34" r="5" fill="#F59F00" />
+        <circle cx="66" cy="34" r="5" fill="#2FB344" />
+        
+        <!-- Clock Container -->
+        <circle cx="110" cy="130" r="55" fill="#206BC4" opacity="0.15" style="fill: var(--tblr-primary, #206bc4)" />
+        <circle cx="110" cy="130" r="48" fill="none" stroke="#206BC4" stroke-width="8" style="stroke: var(--tblr-primary, #206bc4)" />
+        
+        <!-- Clock Marks -->
+        <line x1="110" y1="90" x2="110" y2="96" stroke="#454C5E" stroke-width="4" stroke-linecap="round" />
+        <line x1="150" y1="130" x2="144" y2="130" stroke="#454C5E" stroke-width="4" stroke-linecap="round" />
+        <line x1="110" y1="170" x2="110" y2="164" stroke="#454C5E" stroke-width="4" stroke-linecap="round" />
+        <line x1="70" y1="130" x2="76" y2="130" stroke="#454C5E" stroke-width="4" stroke-linecap="round" />
+        
+        <!-- Clock Hands -->
+        <path d="M110 130 L110 98" stroke="#F59F00" stroke-width="6" stroke-linecap="round" />
+        <path d="M110 130 L135 130" stroke="#F59F00" stroke-width="6" stroke-linecap="round" />
+        <circle cx="110" cy="130" r="6" fill="#F59F00" />
+        
+        <!-- Status Pill -->
+        <rect x="40" y="210" width="140" height="32" rx="16" fill="#F59F00" opacity="0.2" />
+        <circle cx="62" cy="226" r="6" fill="#F59F00" />
+        <rect x="78" y="222" width="80" height="8" rx="4" fill="#F59F00" />
+    </g>
+
+    <!-- Floating Sparkles & Accents -->
+    <circle cx="200" cy="210" r="8" fill="#F59F00" />
+    <circle cx="600" cy="200" r="10" fill="#206BC4" style="fill: var(--tblr-primary, #206bc4)" />
+    <circle cx="220" cy="430" r="6" fill="#206BC4" style="fill: var(--tblr-primary, #206bc4)" />
+    <circle cx="580" cy="440" r="7" fill="#454C5E" />
+
+    <path d="M640 290 L656 290 M648 282 L648 298" stroke="#F59F00" stroke-width="3" stroke-linecap="round" />
+    <path d="M150 340 L164 340 M157 333 L157 347" stroke="#2FB344" stroke-width="3" stroke-linecap="round" />
+</svg>

@@ -32,5 +32,13 @@ export default [
     meta: {
       layout: AuthLayout
     }
+  },
+  {
+    path: '/wait',
+    name: 'wait',
+    component: () => import('@/views/auth/WaitView.vue'),
+    meta: {
+      layout: AuthLayout
+    }
   }
 ]
