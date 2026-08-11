@@ -57,8 +57,8 @@ const signin = () => {
     <h2 class="text-center h2 mb-4">Sign In to your account</h2>
     <div class="alert alert-danger" role="alert" v-if="error">{{ error }}</div>
 
-    <EmailField v-model="email" />
-    <PasswordField v-model="password" :forgot="true" />
+    <EmailField v-model="email" :required="true" />
+    <PasswordField v-model="password" :forgot="true" :required="true" />
 
     <div class="form-footer">
       <button type="submit" class="btn btn-primary w-100">Sign In</button>

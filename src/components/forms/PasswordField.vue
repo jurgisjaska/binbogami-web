@@ -7,22 +7,24 @@ defineProps({
     type: Boolean,
     required: false,
     default: false
+  },
+  required: {
+    type: Boolean,
+    required: false,
+    default: false
   }
 })
 </script>
 
 <template>
   <div class="field mb-3">
-    <label class="form-label d-flex justify-content-between">
+    <label class="form-label" :class="{required: required}">
+      <span class="form-label-description" v-if="forgot">
+        <RouterLink :to="{ name: 'forgot-password' }" class="forgot-password" tabindex="-1">
+          Forgot password?
+        </RouterLink>
+      </span>
       <span>Password</span>
-      <RouterLink
-        :to="{ name: 'forgot-password' }"
-        class="forgot-password"
-        v-if="forgot"
-        tabindex="-1"
-      >
-        Forgot password?
-      </RouterLink>
     </label>
     <div class="input-group input-group-flat">
       <span class="input-group-text"><i class="fas fa-key"></i></span>

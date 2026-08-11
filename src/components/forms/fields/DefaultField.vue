@@ -3,13 +3,18 @@ defineProps({
   label: String,
   type: String,
   placeholder: String,
-  modelValue: String
+  modelValue: String,
+  required: {
+    type: Boolean,
+    required: false,
+    default: false
+  }
 })
 </script>
 
 <template>
   <div class="field mb-3">
-    <div class="form-label">{{ label }}</div>
+    <div class="form-label" :class="{required: required}">{{ label }}</div>
     <input
       class="form-control"
       :type="type"

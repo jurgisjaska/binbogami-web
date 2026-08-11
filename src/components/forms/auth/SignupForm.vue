@@ -5,7 +5,7 @@ import PasswordField from '@/components/forms/PasswordField.vue'
 import { useTokenStore } from '@/stores/token.js'
 import { useUserStore } from '@/stores/user.js'
 import { inject, ref } from 'vue'
-import { RouterLink, useRoute, useRouter } from 'vue-router'
+import { useRoute, useRouter } from 'vue-router'
 
 const authApi = inject('authApi')
 const appApi = inject('appApi')
@@ -58,6 +58,8 @@ const signup = () => {
     data.invitationId = invitation.value.invitation.id
   }
 
+  // @todo fix invitations in backend and frontend.
+
   authApi
     .post('auth/signup', data)
     .then((r) => {
@@ -101,12 +103,12 @@ const signup = () => {
   <div class="alert alert-danger" role="alert" v-if="error">{{ error }}</div>
 
   <form class="signup-form" @submit.prevent="signup">
-    <EmailField v-model="email" />
-    <PasswordField v-model="password" />
-    <DefaultField label="Repeated Password" type="password" v-model="repeatedPassword" />
-    <DefaultField label="Name" type="text" v-model="name" />
-    <DefaultField label="Surname" type="text" v-model="surname" />
-    <DefaultField label="Position (optional)" type="text" v-model="position" />
+    <EmailField v-model="email" :required="true"/>
+    <PasswordField v-model="password" :required="true" />
+    <DefaultField label="Repeated Password" type="password" v-model="repeatedPassword" :required="true"/>
+    <DefaultField label="Name" type="text" v-model="name" :required="true" />
+    <DefaultField label="Surname" type="text" v-model="surname" :required="true" />
+    <DefaultField label="Position" type="text" v-model="position" />
 
     <div class="form-footer">
       <button type="submit" class="btn btn-primary w-100">Sign Up</button>
