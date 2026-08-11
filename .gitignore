@@ -29,7 +29,10 @@ coverage
 
 *.tsbuildinfo
 
-# the notes which should not be in the git
-note.md
+# Playwright
+/test-results/
+/playwright-report/
+/blob-report/
+/.playwright-cli/
 
 .env
