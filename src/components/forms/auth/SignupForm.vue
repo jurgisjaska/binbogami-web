@@ -4,11 +4,11 @@ import DefaultField from '@/components/forms/fields/DefaultField.vue'
 import PasswordField from '@/components/forms/PasswordField.vue'
 import { useTokenStore } from '@/stores/token.js'
 import { useUserStore } from '@/stores/user.js'
+import moment from 'moment'
 import { inject, ref } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 
 const authApi = inject('authApi')
-const appApi = inject('appApi')
 
 const router = useRouter()
 const route = useRoute()
@@ -27,11 +27,14 @@ const position = ref(null)
 
 const error = ref(null)
 
+const formatDate = (date) => (date ? moment(date).format('YYYY-MM-DD HH:mm') : '')
+
 ;(() => {
   const id = route.params.invitation ?? null
+  if (!id) return
   error.value = null
-  appApi
-    .get('/p/invitation/' + id)
+  authApi
+    .get('/auth/invitation/' + id)
     .then((r) => {
       invitation.value = r.data.data
     })
@@ -52,13 +55,9 @@ const signup = () => {
     position: position.value
   }
 
-  const isInvited = !!invitation.value
-
-  if (isInvited) {
-    data.invitationId = invitation.value.invitation.id
+  if (invitation.value) {
+    data.invitation_id = invitation.value.id
   }
-
-  // @todo fix invitations in backend and frontend.
 
   authApi
     .post('auth/signup', data)
@@ -84,30 +83,35 @@ const signup = () => {
 
 <template>
   <div class="card mb-4" v-if="invitation">
-    <header class="card-header">
-      <div class="card-header-title">[ NAME ]</div>
-    </header>
-    <div class="card-content">
-      <div class="content">[ DESCRIPTION ]</div>
-    </div>
-    <footer class="card-footer has-text-left">
-      <div class="card-footer-item has-text-left is-small">
-        Expire on&nbsp;<time :datetime="invitation.invitation.expiredAt">{{
-          invitation.invitation.expiredAt
-        }}</time>
+    <div class="card-status-start bg-primary"></div>
+    <div class="card-body">
+      <h3 class="card-title">Invitation</h3>
+      <div class="text-secondary">
+        You have been invited to create an account. This invitation expires on
+        <time :datetime="invitation.expired_at">{{ formatDate(invitation.expired_at) }}</time>.
       </div>
-    </footer>
+    </div>
   </div>
 
   <h2 class="text-center h2 mb-4">Create new account</h2>
   <div class="alert alert-danger" role="alert" v-if="error">{{ error }}</div>
 
   <form class="signup-form" @submit.prevent="signup">
-    <EmailField v-model="email" :required="true"/>
+    <EmailField v-model="email" :required="true" />
     <PasswordField v-model="password" :required="true" />
-    <DefaultField label="Repeated Password" type="password" v-model="repeatedPassword" :required="true"/>
+    <DefaultField
+      label="Repeated Password"
+      type="password"
+      v-model="repeatedPassword"
+      :required="true"
+    />
     <DefaultField label="Name" type="text" v-model="name" :required="true" />
-    <DefaultField label="Surname" type="text" v-model="surname" :required="true" />
+    <DefaultField
+      label="Surname"
+      type="text"
+      v-model="surname"
+      :required="true"
+    />
     <DefaultField label="Position" type="text" v-model="position" />
 
     <div class="form-footer">

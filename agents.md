@@ -25,6 +25,7 @@
 
 ## API & State Management
 - **Backend API Repository**: https://github.com/jurgisjaska/binbogami
+- **JSON Format**: Backend API uses `snake_case` JSON for requests and responses.
 - **API Clients**: Dual Axios clients (`appApi` and `authApi`) created in `@/api` and injected globally in `main.js` via `app.provide()`.
 - **Interceptors**:
   - `appApi` attaches `Bearer` token to request headers for `v1/` routes.
