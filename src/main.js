@@ -13,13 +13,15 @@ import App from './App.vue'
 import router from './routers'
 import { createPinia } from 'pinia'
 
-import { appApi, authApi } from '@/api'
+import { appApi, authApi, financeApi, userApi } from '@/api'
 
 const pinia = createPinia()
 const app = createApp(App)
 
 app.provide('authApi', authApi)
 app.provide('appApi', appApi)
+app.provide('financeApi', financeApi)
+app.provide('userApi', userApi)
 
 app.use(router)
 app.use(pinia)

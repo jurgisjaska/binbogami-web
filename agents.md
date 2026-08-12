@@ -12,7 +12,7 @@
 ## Project Structure
 - `public/`: Static assets served directly
 - `src/`: Core source files
-  - `api/`: Axios API client instances (`app.js`, `auth.js`) with request/response interceptors
+  - `api/`: Axios API client instances (`app.js`, `auth.js`, `finance.js`, `user.js`) with request/response interceptors
   - `assets/`: SCSS (`main.scss`), SVGs, and images
   - `components/`: Reusable UI components organized by feature (`book/`, `card/`, `forms/`, `pagination/`)
   - `layouts/`: Page layouts (`DashboardLayout.vue`, `AuthLayout.vue`, `DefaultLayout.vue`, `ErrorLayout.vue`)
@@ -20,13 +20,13 @@
   - `stores/`: Pinia state management stores (`token.js`, `user.js`)
   - `views/`: Feature pages organized by folder (`auth/`, `book/`, `category/`, `error/`, `user/`)
 - `index.html`: Main HTML entry point
-- `.env.example`: Environment variables template (`VITE_APP_URL`, `VITE_AUTH_SERVICE_URL`)
+- `.env.example`: Environment variables template (`VITE_APP_URL`, `VITE_AUTH_SERVICE_URL`, `VITE_USER_SERVICE_URL`, `VITE_FINANCE_SERVICE_URL`)
 - `package.json`: Project scripts and dependencies
 
 ## API & State Management
 - **Backend API Repository**: https://github.com/jurgisjaska/binbogami
 - **JSON Format**: Backend API uses `snake_case` JSON for requests and responses.
-- **API Clients**: Dual Axios clients (`appApi` and `authApi`) created in `@/api` and injected globally in `main.js` via `app.provide()`.
+- **API Clients**: Axios clients (`appApi`, `authApi`, `financeApi`, `userApi`) created in `@/api` and injected globally in `main.js` via `app.provide()`.
 - **Interceptors**:
   - `appApi` attaches `Bearer` token to request headers for `v1/` routes.
   - 401 responses automatically clear `token` and `user` stores and redirect to `/signin`.
