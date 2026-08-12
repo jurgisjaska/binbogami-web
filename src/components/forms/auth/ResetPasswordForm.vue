@@ -79,7 +79,9 @@ onUnmounted(() => {
       <div>
         <div class="alert-heading">Password has been reset successfully.</div>
         <div class="alert-description">
-          Redirecting to <RouterLink class="alert-link" :to="{ name: 'signin' }">Sign In</RouterLink> in {{ countdown }} seconds.
+          Redirecting to
+          <RouterLink class="alert-link" :to="{ name: 'signin' }">Sign In</RouterLink> in
+          {{ countdown }} seconds.
         </div>
       </div>
     </div>

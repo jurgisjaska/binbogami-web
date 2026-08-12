@@ -15,7 +15,7 @@ defineProps({
 
 <template>
   <div class="field mb-3">
-    <label class="form-label" :class="{required: required}">Email</label>
+    <label class="form-label" :class="{ required: required }">Email</label>
 
     <div class="input-group input-group-flat">
       <span class="input-group-text"><i class="fas fa-envelope"></i></span>

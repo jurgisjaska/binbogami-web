@@ -88,7 +88,8 @@ const signup = () => {
       <h3 class="card-title">Invitation</h3>
       <div class="text-secondary">
         You have been invited to create an account. This invitation expires on
-        <time :datetime="invitation.expiredAt">{{ formatDate(invitation.expiredAt) }}</time>.
+        <time :datetime="invitation.expiredAt">{{ formatDate(invitation.expiredAt) }}</time
+        >.
       </div>
     </div>
   </div>
@@ -96,7 +97,8 @@ const signup = () => {
   <h2 class="text-center h2 mb-4">Create new account</h2>
   <div class="alert alert-danger" role="alert" v-if="error">{{ error }}</div>
 
-  <form class="signup-form" @submit.prevent="signup">    <EmailField v-model="email" :required="true" />
+  <form class="signup-form" @submit.prevent="signup">
+    <EmailField v-model="email" :required="true" />
     <PasswordField v-model="password" :required="true" />
     <DefaultField
       label="Repeated Password"
@@ -105,12 +107,7 @@ const signup = () => {
       :required="true"
     />
     <DefaultField label="Name" type="text" v-model="name" :required="true" />
-    <DefaultField
-      label="Surname"
-      type="text"
-      v-model="surname"
-      :required="true"
-    />
+    <DefaultField label="Surname" type="text" v-model="surname" :required="true" />
     <DefaultField label="Position" type="text" v-model="position" />
 
     <div class="form-footer">

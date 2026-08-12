@@ -18,7 +18,7 @@ defineProps({
 
 <template>
   <div class="field mb-3">
-    <label class="form-label" :class="{required: required}">
+    <label class="form-label" :class="{ required: required }">
       <span class="form-label-description" v-if="forgot">
         <RouterLink :to="{ name: 'forgot-password' }" class="forgot-password" tabindex="-1">
           Forgot password?

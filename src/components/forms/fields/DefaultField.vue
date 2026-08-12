@@ -14,7 +14,7 @@ defineProps({
 
 <template>
   <div class="field mb-3">
-    <div class="form-label" :class="{required: required}">{{ label }}</div>
+    <div class="form-label" :class="{ required: required }">{{ label }}</div>
     <input
       class="form-control"
       :type="type"

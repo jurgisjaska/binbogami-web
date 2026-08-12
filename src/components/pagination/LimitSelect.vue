@@ -1,9 +1,14 @@
-<script setup></script>
+<script setup>
+const emit = defineEmits(['change'])
+const onChange = (limit) => {
+  emit('change', limit)
+}
+</script>
 
 <template>
-  <select class="form-select">
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
+  <select class="form-select" @change="onChange($event.target.value)">
+    <option value="25">25</option>
+    <option value="50">50</option>
+    <option value="100">100</option>
   </select>
 </template>

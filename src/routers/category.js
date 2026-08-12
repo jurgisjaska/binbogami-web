@@ -4,7 +4,7 @@ export default [
   {
     path: '/categories/:category?',
     name: 'category',
-    component: () => import('@/views/category/CategoryView.vue'),
+    component: () => import('@/views/finance/category/CategoryView.vue'),
     meta: {
       layout: DashboardLayout,
       title: 'Category',
@@ -14,7 +14,7 @@ export default [
   {
     path: '/categories/',
     name: 'categories',
-    component: () => import('@/views/category/CategoriesView.vue'),
+    component: () => import('@/views/finance/category/CategoriesView.vue'),
     meta: {
       layout: DashboardLayout,
       title: 'Categories',

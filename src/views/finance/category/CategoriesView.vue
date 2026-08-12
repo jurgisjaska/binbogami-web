@@ -8,7 +8,7 @@ import LimitSelect from '@/components/pagination/LimitSelect.vue'
 import Pagination from '@/components/pagination/Pagination.vue'
 import { inject, ref, watch } from 'vue'
 
-const api = inject('appApi')
+const api = inject('financeApi')
 
 const categories = ref([])
 const metadata = ref({ page: 1 })
@@ -47,6 +47,19 @@ const onDownload = (f) => {
   console.log(f)
 }
 
+const onLimitChange = (l) => {
+  console.log(l)
+  metadata.value.limit = l
+  metadata.value.page = 1
+  load()
+}
+
+const map = {
+  name: 'Name',
+  description: 'Description',
+  createdAt: 'Created At'
+}
+
 // Load categories on page open.
 load()
 </script>
@@ -65,11 +78,11 @@ load()
       </RouterLink>
     </CardHeader>
 
-    <CardTable :items="categories" />
+    <CardTable :rows="categories" :map="map"/>
 
     <CardFooter>
       <div class="col-auto d-flex align-items-center">
-        <LimitSelect />
+        <LimitSelect @change="onLimitChange" />
       </div>
       <div class="col-auto">
         <Pagination :metadata="metadata" @changePage="onPageChange"></Pagination>
