@@ -35,7 +35,7 @@ const reset = () => {
   error.value = null
   const data = {
     password: password.value,
-    repeated_password: repeatedPassword.value,
+    repeatedPassword: repeatedPassword.value,
     token: token.value
   }
 

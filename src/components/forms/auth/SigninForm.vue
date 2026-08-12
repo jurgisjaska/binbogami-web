@@ -30,7 +30,7 @@ const signin = () => {
       const token = r.data.data.token
       const user = r.data.data.user
 
-      if (user?.confirmed_at === null) {
+      if (user?.confirmedAt === null) {
         router.push({ name: 'wait' })
         return
       }
@@ -42,7 +42,7 @@ const signin = () => {
     })
     .catch((e) => {
       const user = e.response?.data?.data?.user || e.response?.data?.data
-      if (user?.confirmed_at === null) {
+      if (user?.confirmedAt === null) {
         router.push({ name: 'wait' })
         return
       }

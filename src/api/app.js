@@ -1,11 +1,14 @@
 import axios from 'axios'
+import applyCaseMiddleware from 'axios-case-converter'
 import router from '@/routers'
 import { useTokenStore } from '@/stores/token.js'
 import { useUserStore } from '@/stores/user.js'
 
-const appClient = axios.create({
-  baseURL: import.meta.env.VITE_APP_URL || 'http://localhost:8101'
-})
+const appClient = applyCaseMiddleware(
+  axios.create({
+    baseURL: import.meta.env.VITE_APP_URL || 'http://localhost:8101'
+  })
+)
 
 appClient.interceptors.request.use(
   (config) => {

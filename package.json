@@ -18,6 +18,7 @@
     "@tabler/core": "^1.4.0",
     "@tabler/icons-webfont": "^3.46.0",
     "axios": "^1.19.0",
+    "axios-case-converter": "^2.0.1",
     "bootstrap": "^5.3.8",
     "dotenv": "^17.4.2",
     "jwt-decode": "^4.0.0",
