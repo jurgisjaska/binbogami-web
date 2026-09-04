@@ -48,15 +48,16 @@ const onDownload = (f) => {
 }
 
 const onLimitChange = (l) => {
-  console.log(l)
   metadata.value.limit = l
   metadata.value.page = 1
   load()
 }
 
 const map = {
-  name: 'Name',
   description: 'Description',
+  bookId: 'Book',
+  categoryId: 'Category',
+  locationId: 'Location',
   createdAt: 'Created At'
 }
 

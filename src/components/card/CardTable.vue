@@ -15,7 +15,7 @@ defineProps({
 </script>
 
 <template>
-  <div class="table-responsive overflow-visible">
+  <div class="table-responsive">
     <table class="table table-selectable card-table table-vcenter text-nowrap datatable">
       <TableHead :map="map"/>
       <TableBody :rows="rows" :map="map"/>

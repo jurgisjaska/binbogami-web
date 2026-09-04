@@ -48,7 +48,6 @@ const onDownload = (f) => {
 }
 
 const onLimitChange = (l) => {
-  console.log(l)
   metadata.value.limit = l
   metadata.value.page = 1
   load()

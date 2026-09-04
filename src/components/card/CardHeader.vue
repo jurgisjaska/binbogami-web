@@ -15,7 +15,7 @@ defineProps({
 
 <template>
   <div class="card-header">
-    <div class="row w-full">
+    <div class="row align-items-center w-100">
       <div class="col">
         <h3 class="card-title mb-0">{{ title }}</h3>
         <p class="text-secondary m-0" v-if="subtitle">{{ subtitle || '' }}</p>

@@ -68,7 +68,7 @@ load(active, activeMetadata)
 <template>
   <div class="books card">
     <div class="card-header">
-      <div class="row w-full">
+      <div class="row align-items-center w-100">
         <div class="col">
           <h3 class="card-title mb-0">Books</h3>
           <p class="text-secondary m-0">Active accounting books</p>
@@ -106,7 +106,7 @@ load(active, activeMetadata)
         </div>
       </div>
     </div>
-    <div class="table-responsive overflow-visible">
+    <div class="table-responsive">
       <table class="table table-selectable card-table table-vcenter text-nowrap datatable">
         <thead>
           <tr>
