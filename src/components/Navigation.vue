@@ -44,13 +44,13 @@ const signout = () => {
           <RouterLink class="nav-link" :to="{ name: 'books' }">Books</RouterLink>
         </li>
         <li class="nav-item" :class="$route.meta.navigation === 'locations' ? 'active' : ''">
-          <a class="nav-link" href="#">Locations</a>
+          <RouterLink class="nav-link" :to="{ name: 'locations' }">Locations</RouterLink>
         </li>
         <li class="nav-item" :class="$route.meta.navigation === 'categories' ? 'active' : ''">
           <RouterLink class="nav-link" :to="{ name: 'categories' }">Categories</RouterLink>
         </li>
         <li class="nav-item" :class="$route.meta.navigation === 'entries' ? 'active' : ''">
-          <a class="nav-link" href="#">Entries</a>
+          <RouterLink class="nav-link" :to="{ name: 'entries' }">Entries</RouterLink>
         </li>
       </ul>
 

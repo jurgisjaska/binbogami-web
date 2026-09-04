@@ -7,7 +7,9 @@ import { createRouter, createWebHistory } from 'vue-router'
 import authRoutes from './auth.js'
 import bookRoutes from './book.js'
 import categoryRoutes from './category.js'
+import entryRoutes from './entry.js'
 import errorRoutes from './error.js'
+import locationRoutes from './location.js'
 import userRoutes from './user.js'
 
 // @todo add before checks for the token
@@ -47,6 +49,8 @@ const router = createRouter({
     ...userRoutes,
     ...bookRoutes,
     ...categoryRoutes,
+    ...entryRoutes,
+    ...locationRoutes,
     ...errorRoutes
   ]
 })

@@ -1,4 +1,7 @@
 <script setup>
+/**
+ * @deprecated Use @/views/finance/book/BookView.vue instead.
+ */
 import BookForm from '@/components/forms/BookForm.vue'
 </script>
 

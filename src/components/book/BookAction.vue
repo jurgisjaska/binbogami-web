@@ -1,4 +1,7 @@
 <script setup>
+/**
+ * @deprecated
+ */
 import { inject } from 'vue'
 
 const api = inject('appApi')

@@ -1,4 +1,7 @@
 <script setup>
+/**
+ * @deprecated CardTable component and finance view pattern should be used instead.
+ */
 import { defineEmits, defineProps } from 'vue'
 import moment from 'moment'
 import BookAction from '@/components/book/BookAction.vue'

@@ -1,4 +1,7 @@
 <script setup>
+/**
+ * @deprecated
+ */
 import HorizontalField from '@/components/forms/fields/HorizontalField.vue'
 import TextField from '@/components/forms/fields/TextField.vue'
 import { inject, ref } from 'vue'

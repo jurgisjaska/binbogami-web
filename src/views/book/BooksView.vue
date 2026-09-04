@@ -1,4 +1,7 @@
 <script setup>
+/**
+ * @deprecated Use @/views/finance/book/BooksView.vue instead.
+ */
 import BookList from '@/components/book/BookList.vue'
 import Pagination from '@/components/pagination/Pagination.vue'
 import { inject, ref, watch } from 'vue'

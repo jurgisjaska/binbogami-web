@@ -10,15 +10,15 @@ import { inject, ref, watch } from 'vue'
 
 const api = inject('financeApi')
 
-const categories = ref([])
+const books = ref([])
 const metadata = ref({ page: 1 })
 const load = () => {
   api
-    .get('/v1/categories', {
+    .get('/v1/books', {
       params: metadata.value
     })
     .then((r) => {
-      categories.value = r.data.data
+      books.value = r.data.data
       metadata.value = r.data.metadata
     })
     .catch((e) => {
@@ -60,25 +60,25 @@ const map = {
   createdAt: 'Created At'
 }
 
-// Load categories on page open.
+// Load books on page open.
 load()
 </script>
 
 <template>
-  <div class="categories card">
-    <CardHeader title="Categories" subtitle="List of categories">
+  <div class="books card">
+    <CardHeader title="Books" subtitle="List of books">
       <SearchInput v-model="search" />
       <DownloadDropdown @download="onDownload" />
       <RouterLink
         href="#"
         class="btn btn-primary"
-        :to="{ name: 'category', params: { category: null } }"
+        :to="{ name: 'book', params: { book: null } }"
       >
-        <i class="fa fa-plus me-2"></i> Create Category
+        <i class="fa fa-plus me-2"></i> Create Book
       </RouterLink>
     </CardHeader>
 
-    <CardTable :rows="categories" :map="map"/>
+    <CardTable :rows="books" :map="map" />
 
     <CardFooter>
       <div class="col-auto d-flex align-items-center">
