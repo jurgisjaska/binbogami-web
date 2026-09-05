@@ -62,3 +62,4 @@
 - Keep components focused and reusable.
 - Follow the existing API integration pattern using the shared Axios clients in `@/api`.
 - Keep commit messages concise and descriptive, do not use prefixes.
+- Always use Go when writing helper scripts for agents.

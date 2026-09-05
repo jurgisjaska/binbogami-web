@@ -12,9 +12,7 @@ defineProps({
     <tr>
       <th class="w-1"></th>
       <th class="w-1 uuid-col">
-        <button class="table-sort d-flex justify-content-between" data-sort="sort-id">
-          ID
-        </button>
+        <button class="table-sort d-flex justify-content-between" data-sort="sort-id">ID</button>
       </th>
       <template v-for="(value, key) in map" :key="key">
         <th v-if="key !== 'id'">
@@ -34,4 +32,3 @@ defineProps({
   white-space: nowrap;
 }
 </style>
-

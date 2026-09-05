@@ -1,14 +1,27 @@
 <script setup>
-const emit = defineEmits(['change'])
+defineProps({
+  modelValue: {
+    type: Number,
+    required: false,
+    default: 25
+  },
+  options: {
+    type: Array,
+    required: false,
+    default: () => [25, 50, 100]
+  }
+})
+
+const emit = defineEmits(['change', 'update:modelValue'])
 const onChange = (limit) => {
-  emit('change', limit)
+  const num = Number(limit)
+  emit('update:modelValue', num)
+  emit('change', num)
 }
 </script>
 
 <template>
-  <select class="form-select" @change="onChange($event.target.value)">
-    <option value="25">25</option>
-    <option value="50">50</option>
-    <option value="100">100</option>
+  <select class="form-select" :value="modelValue" @change="onChange($event.target.value)">
+    <option v-for="option in options" :key="option" :value="option">{{ option }}</option>
   </select>
 </template>

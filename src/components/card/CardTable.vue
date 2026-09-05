@@ -1,6 +1,6 @@
 <script setup>
 import TableHead from '@/components/card/table/TableHead.vue'
-import TableBody from "@/components/card/table/TableBody.vue";
+import TableBody from '@/components/card/table/TableBody.vue'
 
 defineProps({
   map: {
@@ -17,8 +17,8 @@ defineProps({
 <template>
   <div class="table-responsive">
     <table class="table table-selectable card-table table-vcenter text-nowrap datatable">
-      <TableHead :map="map"/>
-      <TableBody :rows="rows" :map="map"/>
+      <TableHead :map="map" />
+      <TableBody :rows="rows" :map="map" />
     </table>
   </div>
 </template>

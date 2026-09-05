@@ -68,11 +68,7 @@ load()
     <CardHeader title="Books" subtitle="List of books">
       <SearchInput v-model="search" />
       <DownloadDropdown @download="onDownload" />
-      <RouterLink
-        href="#"
-        class="btn btn-primary"
-        :to="{ name: 'book', params: { book: null } }"
-      >
+      <RouterLink href="#" class="btn btn-primary" :to="{ name: 'book', params: { book: null } }">
         <i class="fa fa-plus me-2"></i> Create Book
       </RouterLink>
     </CardHeader>
@@ -81,10 +77,10 @@ load()
 
     <CardFooter>
       <div class="col-auto d-flex align-items-center">
-        <LimitSelect @change="onLimitChange" />
+        <LimitSelect v-model="metadata.limit" @change="onLimitChange" />
       </div>
       <div class="col-auto">
-        <Pagination :metadata="metadata" @changePage="onPageChange"></Pagination>
+        <Pagination :page="metadata.page" :pages="metadata.pages" @change="onPageChange" />
       </div>
     </CardFooter>
   </div>

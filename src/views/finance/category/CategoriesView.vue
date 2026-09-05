@@ -26,11 +26,6 @@ const load = () => {
     })
 }
 
-const onPageChange = (n) => {
-  metadata.value.page = n
-  load()
-}
-
 const search = ref('')
 let timeout
 watch(search, (q) => {
@@ -50,6 +45,11 @@ const onDownload = (f) => {
 const onLimitChange = (l) => {
   metadata.value.limit = l
   metadata.value.page = 1
+  load()
+}
+
+const onPageChange = (n) => {
+  metadata.value.page = n
   load()
 }
 
@@ -77,14 +77,14 @@ load()
       </RouterLink>
     </CardHeader>
 
-    <CardTable :rows="categories" :map="map"/>
+    <CardTable :rows="categories" :map="map" />
 
     <CardFooter>
       <div class="col-auto d-flex align-items-center">
-        <LimitSelect @change="onLimitChange" />
+        <LimitSelect v-model="metadata.limit" @change="onLimitChange" />
       </div>
       <div class="col-auto">
-        <Pagination :metadata="metadata" @changePage="onPageChange"></Pagination>
+        <Pagination :page="metadata.page" :pages="metadata.pages" @change="onPageChange" />
       </div>
     </CardFooter>
   </div>

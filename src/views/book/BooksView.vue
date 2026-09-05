@@ -146,7 +146,11 @@ load(active, activeMetadata)
           <p class="m-0 text-secondary"></p>
         </div>
         <div class="col-auto">
-          <Pagination :metadata="activeMetadata" @changePage="onActivePageChange"></Pagination>
+          <Pagination
+            :page="activeMetadata.page"
+            :pages="activeMetadata.pages"
+            @change="onActivePageChange"
+          />
         </div>
       </div>
     </div>
