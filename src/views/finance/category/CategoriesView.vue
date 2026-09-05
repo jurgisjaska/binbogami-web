@@ -6,7 +6,7 @@ import DownloadDropdown from '@/components/card/header/DownloadDropdown.vue'
 import SearchInput from '@/components/card/header/SearchInput.vue'
 import LimitSelect from '@/components/pagination/LimitSelect.vue'
 import Pagination from '@/components/pagination/Pagination.vue'
-import { inject, ref, watch } from 'vue'
+import { inject, ref } from 'vue'
 
 const api = inject('financeApi')
 
@@ -26,17 +26,11 @@ const load = () => {
     })
 }
 
-const search = ref('')
-let timeout
-watch(search, (q) => {
-  clearTimeout(timeout)
-
-  timeout = setTimeout(() => {
-    metadata.value.search = q
-    metadata.value.page = 1
-    load()
-  }, 500)
-})
+const onSearch = (q) => {
+  metadata.value.search = q
+  metadata.value.page = 1
+  load()
+}
 
 const onDownload = (f) => {
   console.log(f)
@@ -66,7 +60,7 @@ load()
 <template>
   <div class="categories card">
     <CardHeader title="Categories" subtitle="List of categories">
-      <SearchInput v-model="search" />
+      <SearchInput v-model="metadata.search" @search="onSearch" />
       <DownloadDropdown @download="onDownload" />
       <RouterLink
         href="#"
