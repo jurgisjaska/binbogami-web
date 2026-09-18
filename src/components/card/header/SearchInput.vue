@@ -1,5 +1,5 @@
 <script setup>
-import {ref, watch} from 'vue'
+import { ref, watch } from 'vue'
 
 const props = defineProps({
   modelValue: {
@@ -18,10 +18,10 @@ const query = ref(props.modelValue)
 let timeout
 
 watch(
-    () => props.modelValue,
-    (val) => {
-      query.value = val || ''
-    }
+  () => props.modelValue,
+  (val) => {
+    query.value = val || ''
+  }
 )
 
 watch(query, (val) => {
@@ -37,11 +37,11 @@ watch(query, (val) => {
   <div class="input-group input-group-flat w-auto">
     <span class="input-group-text"><i class="fa fa-magnifying-glass"></i></span>
     <input
-        v-model="query"
-        type="text"
-        class="form-control"
-        autocomplete="off"
-        placeholder="Search..."
+      v-model="query"
+      type="text"
+      class="form-control"
+      autocomplete="off"
+      placeholder="Search..."
     />
   </div>
 </template>

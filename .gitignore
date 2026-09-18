@@ -36,3 +36,7 @@ coverage
 /.playwright-cli/
 
 .env
+
+# AI
+.claude
+.junie

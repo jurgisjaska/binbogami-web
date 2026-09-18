@@ -7,6 +7,9 @@ import SearchInput from '@/components/card/header/SearchInput.vue'
 import LimitSelect from '@/components/pagination/LimitSelect.vue'
 import Pagination from '@/components/pagination/Pagination.vue'
 import { inject, ref } from 'vue'
+import TableHead from '@/components/card/table/TableHead.vue'
+import TableBody from '@/components/card/table/TableBody.vue'
+import CategoryIconButton from '@/components/category/CategoryIconButton.vue'
 
 const api = inject('financeApi')
 
@@ -47,6 +50,23 @@ const onPageChange = (n) => {
   load()
 }
 
+const sort = ref(null)
+const order = ref(null)
+const onSort = (field) => {
+  if (sort.value === field) {
+    order.value = order.value === 'asc' ? 'desc' : 'asc'
+  } else {
+    sort.value = field
+    order.value = 'asc'
+  }
+
+  metadata.value.sort = field
+  metadata.value.order = order.value
+  load()
+}
+
+const getSortClass = (field) => (sort.value === field ? order.value : '')
+
 const map = {
   name: 'Name',
   description: 'Description',
@@ -71,7 +91,48 @@ load()
       </RouterLink>
     </CardHeader>
 
-    <CardTable :rows="categories" :map="map" />
+    <CardTable>
+      <TableHead>
+        <th class="w-1"></th>
+        <th>
+          <button
+            type="button"
+            class="table-sort d-flex justify-content-between"
+            :class="getSortClass('name')"
+            @click="onSort('name')"
+          >
+            Name
+          </button>
+        </th>
+        <th>
+          <button
+            type="button"
+            class="table-sort d-flex justify-content-between"
+            :class="getSortClass('description')"
+            @click="onSort('description')"
+          >
+            Description
+          </button>
+        </th>
+        <th>
+          <button
+            type="button"
+            class="table-sort d-flex justify-content-between"
+            :class="getSortClass('created_at')"
+            @click="onSort('created_at')"
+          >
+            Created At
+          </button>
+        </th>
+      </TableHead>
+      <TableBody :rows="categories" :map="map">
+        <template #prepend="{ row }">
+          <td class="w-1">
+            <CategoryIconButton :category="row" />
+          </td>
+        </template>
+      </TableBody>
+    </CardTable>
 
     <CardFooter>
       <div class="col-auto d-flex align-items-center">

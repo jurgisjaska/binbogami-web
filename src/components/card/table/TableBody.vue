@@ -14,39 +14,24 @@ defineProps({
 <template>
   <tbody class="table-body">
     <tr v-for="row in rows" :key="row.id">
-      <td></td>
-      <td class="uuid-cell">
-        <span class="uuid-text" :title="row.id">{{ row.id }}</span>
+      <td>
+        <input
+          class="form-check-input m-0 align-middle table-selectable-check"
+          type="checkbox"
+          :value="row.id"
+        />
       </td>
+      <slot name="prepend" :row="row" />
       <template v-for="(value, key) in map" :key="key">
         <td v-if="key !== 'id'">
-          {{ row[key] }}
+          <slot :name="key" :row="row" :value="row[key]">
+            {{ row[key] }}
+          </slot>
         </td>
       </template>
-      <td></td>
+      <slot name="append" :row="row">
+        <td></td>
+      </slot>
     </tr>
   </tbody>
 </template>
-
-<style scoped>
-.uuid-cell {
-  width: 1%;
-  white-space: nowrap;
-}
-
-.uuid-text {
-  display: inline-block;
-  max-width: 18ch;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  vertical-align: middle;
-  transition: max-width 0.25s ease-in-out;
-  cursor: pointer;
-}
-
-.uuid-cell:hover .uuid-text,
-.uuid-text:hover {
-  max-width: 36ch;
-}
-</style>

@@ -2,6 +2,8 @@
 import CardFooter from '@/components/card/CardFooter.vue'
 import CardHeader from '@/components/card/CardHeader.vue'
 import CardTable from '@/components/card/CardTable.vue'
+import TableHead from '@/components/card/table/TableHead.vue'
+import TableBody from '@/components/card/table/TableBody.vue'
 import DownloadDropdown from '@/components/card/header/DownloadDropdown.vue'
 import SearchInput from '@/components/card/header/SearchInput.vue'
 import LimitSelect from '@/components/pagination/LimitSelect.vue'
@@ -67,7 +69,14 @@ load()
       </RouterLink>
     </CardHeader>
 
-    <CardTable :rows="books" :map="map" />
+    <CardTable>
+      <TableHead>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Created At</th>
+      </TableHead>
+      <TableBody :rows="books" :map="map" />
+    </CardTable>
 
     <CardFooter>
       <div class="col-auto d-flex align-items-center">
